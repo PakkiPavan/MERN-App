@@ -29,7 +29,7 @@ if(process.env.NODE_ENV==='production')
 {
 	console.log("INSIDE PRODUCTION")
 	app.use(express.static('client/build'));
-	app.get('*',(req,res)=>{
+	app.get('/api',(req,res)=>{
 		//res.sendFile(path.join(__dirname,'client/build/index.html'))
 		//res.sendFile(path.resolve(__dirname,'client','build','index.html'))
 		var count;
@@ -44,6 +44,26 @@ if(process.env.NODE_ENV==='production')
 		})
 	
 	})
+
+	app.post("/inc",function(req,res){
+		var count;
+		console.log("Inside inc")
+		console.log(req.body)	
+		mongoose.connect(url,function(err,db){
+			if(err) throw err;
+			db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
+				if(err) throw err;
+				//res.json(docs);
+				count=docs[0].count;
+				//console.log(count)
+				intCount=parseInt(req.body.count)+1
+				db.collection('collectionTest1').update({count:count},{$set:{"count":intCount}})
+				res.send("Incremented");
+				console.log("Incremented")
+			})
+			db.close();
+		})	
+	});
 	
 
 }
@@ -92,9 +112,7 @@ app.post("/inc",function(req,res){
 			console.log("Incremented")
 		})
 		db.close();
-	})
-	
-	
+	})	
 });
 
 
