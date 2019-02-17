@@ -31,7 +31,18 @@ if(process.env.NODE_ENV==='production')
 	app.use(express.static('client/build'));
 	app.get('*',(req,res)=>{
 		//res.sendFile(path.join(__dirname,'client/build/index.html'))
-		res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+		//res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+		var count;
+		mongoose.connect(url,function(err,db){
+			if(err) throw err;
+			db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
+				if(err) throw err;
+				res.json(docs);
+				//count=docs[0].count;
+				//console.log(count+1)
+			})
+		})
+	
 	})
 	
 
@@ -43,7 +54,7 @@ if(process.env.NODE_ENV==='production')
 })
 */
 
-app.use("/api",function(req,res){
+app.get("/api",function(req,res){
 	var count;
 	//console.log(req.body)
 	mongoose.connect(url,function(err,db){
