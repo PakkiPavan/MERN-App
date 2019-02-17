@@ -57,8 +57,8 @@ if(process.env.NODE_ENV==='production')
 				count=docs[0].count;
 				//console.log(count)
 				intCount=parseInt(req.body.count)+1
-				db.collection('collectionTest1').update({count:count},{$set:{"count":intCount}})
-				res.send("Incremented"+count+intCount);
+				db.collection('collectionTest1').updateOne({count:count},{$set:{"count":intCount}})
+				res.send("Incremented"+" "+docs+" "+count+" "+intCount);
 				console.log("Incremented")
 			})
 			db.close();
