@@ -43,7 +43,8 @@ class App extends Component {
 		document.getElementById("like").childNodes[0].style.pointerEvents="none";
 		document.getElementById("like").childNodes[0].style.color="green";
 		
-		this.setState({count:this.state.count+1},()=>console.log(this.state.count))
+		this.setState({count:this.state.count+1},()=>console.log("With callback ",this.state.count))
+		console.log("Without callback ",this.state.count)
 		$.ajax({
 			url:'/inc',
 			type:'post',
