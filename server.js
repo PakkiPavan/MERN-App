@@ -46,19 +46,19 @@ if(process.env.NODE_ENV==='production')
 	})
 
 	app.post("/inc",function(req,res){
-	var count;
-	mongoose.connect(url,function(err,db){
-		if(err) throw err;
-		db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
+		var count;
+		mongoose.connect(url,function(err,db){
 			if(err) throw err;
-			count=docs[0].count;
-			intCount=parseInt(req.body.count)+1
-			db.collection('collectionTest1').update({count:count},{$set:{"count":intCount}},function(err,res){
+			db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
 				if(err) throw err;
-				console.log("Incremented")
-				db.close();
-			})
-			res.send("Incremented"+" "+JSON.stringify(docs)+" "+count+" "+intCount);
+				count=docs[0].count;
+				intCount=parseInt(req.body.count)+1
+				db.collection('collectionTest1').updateOne({count:count},{$set:{"count":intCount}},function(err,res){
+					if(err) throw err;
+					console.log("Incremented")
+					db.close();
+				})
+				res.send("Incremented"+" "+JSON.stringify(docs)+" "+count+" "+intCount);
 			})
 		})	
 	});
@@ -106,7 +106,7 @@ app.post("/inc",function(req,res){
 			count=docs[0].count;
 			//console.log(count)
 			intCount=parseInt(req.body.count)+1
-			db.collection('collectionTest1').update({count:count},{$set:{"count":intCount}},function(err,res){
+			db.collection('collectionTest1').updateOne({count:count},{$set:{"count":intCount}},function(err,res){
 				if(err) throw err;
 				console.log("Incremented")
 				db.close();
