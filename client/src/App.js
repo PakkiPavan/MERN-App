@@ -4,7 +4,7 @@ import './App.css';
 import $ from 'jquery';
 import '../node_modules/font-awesome/css/font-awesome.css'
 
-//import axios from 'axios';
+import axios from 'axios';
 /*import {mapStateToProps,mapDispatchToProps} from './LikeStore';
 import {connect} from 'react-redux';*/
 
@@ -20,11 +20,16 @@ class App extends Component {
 	{
 		/*axios.post("/inc",this.state)
 				.then(result=>console.log(result))*/
+		axios.get('/api')
+		.then(res=>res.data)
+		.then(countJson=>this.setState({count:countJson[0].count},()=>console.log("Count fetched",countJson[0])))
+		.catch(err=>console.log(err))
 		//Without Redux
-		fetch('/api')
+		/*
+			fetch('/api')
 			.then((res)=>res.json())	
 			.then(countJson=>this.setState({count:countJson[0].count},()=>console.log("Count fetched",countJson[0])));		
-			
+		*/	
 		//console.log(this.state.count)
 		/*
 			// Redux

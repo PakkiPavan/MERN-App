@@ -1,3 +1,4 @@
+const http=require('http');
 const express=require('express');
 const mongoose=require('mongoose');	
 const app=express();
@@ -20,6 +21,19 @@ mongoose.connect(url,function(err){
 	PUT	    Update
 	DELETE	Delete
 */
+setInterval(function(){
+	http.get('https://ancient-tundra-40322.herokuapp.com/')
+},300000) //every 5 minutes (300000)
+
+var userSchema=new mongoose.Schema({
+	fname:String,
+	mname:String,
+	lname:String,
+	password:String
+	
+})
+var userModel=mongoose.model("userRegTest",userSchema)
+
 
 //static fie declaration
 //app.use(express.static(path.join(__dirname,'client/build')));
@@ -30,16 +44,12 @@ if(process.env.NODE_ENV==='production')
 	console.log("INSIDE PRODUCTION")
 	app.use(express.static('client/build'));
 	app.get('/api',(req,res)=>{
-		//res.sendFile(path.join(__dirname,'client/build/index.html'))
-		//res.sendFile(path.resolve(__dirname,'client','build','index.html'))
 		var count;
 		mongoose.connect(url,function(err,db){
 			if(err) throw err;
 			db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
 				if(err) throw err;
 				res.json(docs);
-				//count=docs[0].count;
-				//console.log(count+1)
 			})
 		})
 	
@@ -67,13 +77,19 @@ if(process.env.NODE_ENV==='production')
 
 }
 	
-/*app.get('/api',(req,res)=>{
-	console.log("INSIDE first get")
-	res.sendFile(path.join(__dirname,'client/public/index.html'))
-})
-*/
 
-app.use("/api",function(req,res){
+app.post('/add',function(req,res){
+	var data=new userModel(req.body);
+	data.save()
+	.then(user=>{
+		res.redirect("/")
+	})
+	.catch(err=>{
+		res.status(400).send("User data not stored in database")
+	})
+})
+
+app.get("/api",function(req,res){
 	var count;
 	//console.log(req.body)
 	mongoose.connect(url,function(err,db){
