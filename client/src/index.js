@@ -2,14 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Home from './Home';
+import Registration from './Registration';
+
 //import * as serviceWorker from './serviceWorker';
 /*import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import LikeReducer from './LikeReducer';*/
+import {BrowserRouter,Route,Link} from 'react-router-dom';
 
 //const store=createStore(LikeReducer);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+	<BrowserRouter>
+		<div>
+			<Route exact path="/" component={Home}/>
+			<Route path="/register" component={Registration}/>
+			<Route path="/login" component={Home}/>
+			<Route path="/like" component={App}/>
+			
+		</div> 
+	</BrowserRouter>,
+	document.getElementById('root'));
 
 /*
 ReactDOM.render(

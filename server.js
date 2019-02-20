@@ -2,6 +2,7 @@ const http=require('http');
 const express=require('express');
 const mongoose=require('mongoose');	
 const app=express();
+var session=require('express-session')
 const port=Number(process.env.PORT || 3001);
 const path=require('path');
 const bodyParser=require('body-parser');
@@ -15,6 +16,14 @@ mongoose.connect(url,function(err){
 		throw err;
 	console.log("Connected");
 });
+app.use(
+	session({
+		secret:"aaaa",
+		saveUninitialized: true,
+		resave:true
+	})
+)
+
 /*
 	GET	    Read
 	POST	Create
@@ -23,17 +32,14 @@ mongoose.connect(url,function(err){
 */
 setInterval(function(){
 	http.get('https://ancient-tundra-40322.herokuapp.com/')
-},300000) //every 5 minutes (300000)
+},20*60*1000) //every 20 minutes
 
 var userSchema=new mongoose.Schema({
 	fname:String,
-	mname:String,
-	lname:String,
+	email:String,
 	password:String
-	
 })
-var userModel=mongoose.model("userRegTest",userSchema)
-
+var userModel=mongoose.model("userData",userSchema)
 
 //static fie declaration
 //app.use(express.static(path.join(__dirname,'client/build')));
@@ -78,15 +84,27 @@ if(process.env.NODE_ENV==='production')
 }
 	
 
-app.post('/add',function(req,res){
-	var data=new userModel(req.body);
+app.post('/register',function(req,res){
+	console.log(req.body)
+	mongoose.connect(url,function(err,db){
+		if(err)
+			throw err;
+		db.collection('userData').insertOne(req.body,function(err,res){
+			if(err)
+				throw err;
+			db.close();
+		})
+		res.send("Inserted");
+	})
+	/*var data=new userModel(req.body)
 	data.save()
 	.then(user=>{
-		res.redirect("/")
+		res.send("stored");
 	})
 	.catch(err=>{
-		res.status(400).send("User data not stored in database")
-	})
+		res.status(400).send("not stored")
+	})*/
+	
 })
 
 app.get("/api",function(req,res){

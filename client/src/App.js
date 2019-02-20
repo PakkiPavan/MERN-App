@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
 import '../node_modules/font-awesome/css/font-awesome.css'
+import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 /*import {mapStateToProps,mapDispatchToProps} from './LikeStore';
@@ -74,6 +75,7 @@ class App extends Component {
 		{
 			return (
 				<div id="like">
+					<Link to="/">Home</Link><br/>
 					<i className="fa fa-thumbs-up fa-2x" onClick={this.test.bind(this)}></i>
 					<h1>{this.state.count}</h1>			
 				</div>
