@@ -1,15 +1,156 @@
-.fa-thumbs-up
+body{
+	/* background:url('http://ppcdn.500px.org/75319705/1991f76c0c6a91ae1d23eb94ac5c7a9f7e79c480/2048.jpg') no-repeat;
+	background-size:cover;
+	height:100vh; */
+	background-color: #7b2e73;
+}
+.box{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:400px;
+	padding:40px;
+	/* width:300px;
+	padding:20px;  */
+	background-color:rgba(0,0,0,0.8);
+	box-sizing:border-box;
+	border-radius:10px;
+	box-shadow: 9px 12px 14px black;
+	animation: fadeRegister 0.8s;
+}
+@keyframes fadeRegister {
+	0%
+	{
+		opacity: 0.2;
+	}
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+@media(max-width:500px) {
+	.box{
+		width:333px;
+		padding-left:35px;
+	}
+}
+@media(max-width:375px) {
+	.box{
+		width:300px;
+		padding-left:38px;
+	}
+}
+h1
 {
+	color:white;
+	text-align:center;
+}
+.inputBox{
+	position:relative;
+}
+.inputBox input{
+	width:100%;
+	padding:10px;
+	outline:none;
+	border:none;
+	border-bottom:3px solid white;
+	background:transparent;
+	margin-bottom:40px;
+	color:white;
+}
+.box .inputBox label
+{
+	color:white;
+	position:absolute;
+	top:0;
+	left:0;
+	pointer-events:none;
+	padding:10px 0;
+	font-size:18px;
+	transition:0.5s;
+}
+.inputBox input:focus ~ label,
+.inputBox input:valid ~ label
+{
+	top:-20px;
+	left:0;
+	font-size:16px;
+	color:#8c8cb5;
+}
+.btn{
+	padding:10px;
+	position:relative;
+	margin-bottom: 10px;
+
+}
+button{
+	padding:10px;
+	position:absolute;
+	left:50%;
+	transform: translate(-50%);
+	background-color: #e10050;
+	outline:none;
+	border:none;
+	cursor:pointer;
+	border-radius: 5px;
+	width:133px;
+	color:white;
+	font-size:16px;
+}
+p{
+	position:absolute;
+	bottom:-5px;
+}
+.fa-thumbs-up{
 	color:grey;
 	cursor:pointer;
 }
 
+.load{
+	position:absolute;
+	border:5px solid silver;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	text-align:center;
+	line-height:150px;
+	font-size:20px;
+	text-transform:uppercase;
+}
+.load:before{
+	content:'';
+	position:absolute;
+	top:-5px;
+	left:-5px;
+	width:100%;
+	height:100%;
+	border:5px solid transparent;
+	border-top:5px solid black;
+	border-top:5px solid black;
+	border-radius:50%;
+	animation:load 1.5s infinite;
+}
+@keyframes load
+{
+	0%
+	{
+		transform:rotate(0deg);
+	}
+	100%
+	{
+		transform:rotate(360deg);
+	}
+}
 
 
 /*	"dev":"concurrently \"npm run server\" \"npm run client\""  */
 
-
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -41,5 +182,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
+} */

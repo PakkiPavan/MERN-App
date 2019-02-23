@@ -16,7 +16,6 @@ class Home extends React.Component
 			<Link to="/register">Register here</Link><br/>
 			<Link to="/login">Login here</Link><br/>
 			<Link to="/like">Like</Link>
-			
 		</div>	
 		)
 	}

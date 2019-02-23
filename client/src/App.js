@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import $ from 'jquery';
 import '../node_modules/font-awesome/css/font-awesome.css'
 import {Link} from 'react-router-dom';
-
 import axios from 'axios';
 /*import {mapStateToProps,mapDispatchToProps} from './LikeStore';
 import {connect} from 'react-redux';*/
@@ -84,11 +83,14 @@ class App extends Component {
 		else
 		{
 			return(
-				<div>Loading...</div>
+				<div className="load">
+					Loading...
+				</div>
 			)
 		}
 		
 	}
 }
+
 export default App;
 //export default connect(mapStateToProps,mapDispatchToProps)(App);

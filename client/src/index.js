@@ -9,7 +9,7 @@ import Registration from './Registration';
 /*import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import LikeReducer from './LikeReducer';*/
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {BrowserRouter,Route} from 'react-router-dom';
 
 //const store=createStore(LikeReducer);
 
