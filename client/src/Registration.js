@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
-
+import './App.css';
 class Registration extends React.Component
 {
 	constructor(props)

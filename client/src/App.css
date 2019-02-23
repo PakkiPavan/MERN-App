@@ -17,9 +17,9 @@ body{
 	box-sizing:border-box;
 	border-radius:10px;
 	box-shadow: 9px 12px 14px black;
-	animation: fadeRegister 0.8s;
+	/* animation: fadeRegister 0.8s; */
 }
-@keyframes fadeRegister {
+/* @keyframes fadeRegister {
 	0%
 	{
 		opacity: 0.2;
@@ -28,7 +28,7 @@ body{
 	{
 		opacity: 1;
 	}
-}
+} */
 
 @media(max-width:500px) {
 	.box{
@@ -57,7 +57,7 @@ h1
 	border:none;
 	border-bottom:3px solid white;
 	background:transparent;
-	margin-bottom:40px;
+	margin-bottom:60px;
 	color:white;
 }
 .box .inputBox label
@@ -98,6 +98,9 @@ button{
 	width:133px;
 	color:white;
 	font-size:16px;
+}
+a{
+	color:white;
 }
 p{
 	position:absolute;
