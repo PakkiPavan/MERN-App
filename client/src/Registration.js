@@ -82,45 +82,49 @@ class Registration extends React.Component
 					{
 						alert("Something went wrong");
 					}
-
 				})
 			}
 
 		}
 	}
+
 	render()
 	{
+		$(document).ready(function(){
+			$('input').focus(function(){
+				$('#success').hide();
+			})
+		})
 			return(
-				<div>
+				<div className="container">
 						<Link to="/">Home</Link>
 							<div className="box">
-								<h1>Register</h1>
-									<form id="form">
+								<h1>Create an account</h1>
+									<form id="form" autoComplete="off">
 										<div className="inputBox">
 											<input type="text" name="fname" id="fname" required/>
-											<label>Username</label>
+											<label>USERNAME</label>
 										</div>
 										<div className="inputBox">
 											<input type="text"name="email" id="email" required onBlur={this.emailValidation.bind(this)} required/>
-											<label>Email</label>
-											<p id="format" style={{display:'none',color:'red'}}>Email should be in correct format</p>
+											<label>EMAIL</label>
+											<p id="format" style={{display:'none',color:'red'}}>Enter vaid Email ID</p>
 										</div>
 										<div className="inputBox">
 											<input type="password" name="password" id="password" required/>
-											<label>Password</label>
+											<label>PASSWORD</label>
 										</div>
 										<div className="inputBox">
 											<input type="password" name="cpassword" id="cpassword" required onBlur={this.passwordMatch.bind(this)}/>
-											<label>Confirm Password</label>
+											<label>CONFIRM PASSWORD</label>
 											<p id="match" style={{display:'none',color:'red'}}>Confirm password should match with password</p>
 										</div>
 										<div className="btn">
 											<button type="button" onClick={this.register.bind(this)}>REGISTER</button>
-											<p id="success" style={{display:'none'}}>Registration Completed Successfully</p>
+											<p id="success">Registration Completed Successfully</p>
 										</div>
 									</form>
 							</div>
-
 				</div>
 			)
 

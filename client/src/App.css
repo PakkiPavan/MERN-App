@@ -2,8 +2,12 @@ body{
 	/* background:url('http://ppcdn.500px.org/75319705/1991f76c0c6a91ae1d23eb94ac5c7a9f7e79c480/2048.jpg') no-repeat;
 	background-size:cover;
 	height:100vh; */
-	background-color: #7b2e73;
+	background-color: #413198;
 }
+.container{
+	overflow:auto;
+}
+
 .box{
 	position:absolute;
 	top:50%;
@@ -11,15 +15,22 @@ body{
 	transform:translate(-50%,-50%);
 	width:400px;
 	padding:40px;
-	/* width:300px;
-	padding:20px;  */
 	background-color:rgba(0,0,0,0.8);
 	box-sizing:border-box;
 	border-radius:10px;
 	box-shadow: 9px 12px 14px black;
-	/* animation: fadeRegister 0.8s; */
+	animation: fadeRegister 0.8s;
 }
-/* @keyframes fadeRegister {
+/* .box{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:400px;
+	padding:40px;
+	background-color:#7b2e73;
+} */
+@keyframes fadeRegister {
 	0%
 	{
 		opacity: 0.2;
@@ -28,7 +39,7 @@ body{
 	{
 		opacity: 1;
 	}
-} */
+}
 
 @media(max-width:500px) {
 	.box{
@@ -40,6 +51,11 @@ body{
 	.box{
 		width:300px;
 		padding-left:38px;
+	}
+}
+@media(max-height:475px) {
+	.box{
+		top:300px;
 	}
 }
 h1
@@ -59,13 +75,14 @@ h1
 	background:transparent;
 	margin-bottom:60px;
 	color:white;
+	font-size: 18px;
 }
 .box .inputBox label
 {
 	color:white;
 	position:absolute;
 	top:0;
-	left:0;
+	left:0px;
 	pointer-events:none;
 	padding:10px 0;
 	font-size:18px;
@@ -74,16 +91,16 @@ h1
 .inputBox input:focus ~ label,
 .inputBox input:valid ~ label
 {
-	top:-20px;
+	top:-26px;
 	left:0;
 	font-size:16px;
 	color:#8c8cb5;
 }
+
 .btn{
 	padding:10px;
 	position:relative;
 	margin-bottom: 10px;
-
 }
 button{
 	padding:10px;
@@ -105,7 +122,14 @@ a{
 p{
 	position:absolute;
 	bottom:-5px;
+	font-size: 20px;
 }
+#success{
+	display:none;
+	color:green;
+	font-size:20px;
+}
+
 .fa-thumbs-up{
 	color:grey;
 	cursor:pointer;
