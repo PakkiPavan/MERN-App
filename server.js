@@ -1,6 +1,6 @@
 const http=require('http');
 const express=require('express');
-const mongoose=require('mongoose');	
+const mongoose=require('mongoose');
 const app=express();
 var session=require('express-session')
 const port=Number(process.env.PORT || 3001);
@@ -10,12 +10,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
-
+var sess;
 mongoose.connect(url,function(err){
 	if(err)
 		throw err;
 	console.log("Connected");
 });
+
 app.use(
 	session({
 		secret:"aaaa",
@@ -44,7 +45,7 @@ var userModel=mongoose.model("userData",userSchema)
 //static fie declaration
 //app.use(express.static(path.join(__dirname,'client/build')));
 
-//production mode 
+//production mode start
 if(process.env.NODE_ENV==='production')
 {
 	console.log("INSIDE PRODUCTION")
@@ -58,7 +59,7 @@ if(process.env.NODE_ENV==='production')
 				res.json(docs);
 			})
 		})
-	
+
 	})
 
 	app.post("/inc",function(req,res){
@@ -76,13 +77,10 @@ if(process.env.NODE_ENV==='production')
 				})
 				res.send("Incremented"+" "+JSON.stringify(docs)+" "+count+" "+intCount);
 			})
-		})	
+		})
 	});
-
-	
-
 }
-	
+//production mode ends
 
 app.post('/register',function(req,res){
 	console.log(req.body)
@@ -104,8 +102,27 @@ app.post('/register',function(req,res){
 	.catch(err=>{
 		res.status(400).send("not stored")
 	})*/
-	
+
 })
+app.post('/login',function(req,res){
+	//console.log(req.body)
+	sess=req.session;
+	sess.uname=req.body.uname
+	console.log(req.session)
+	mongoose.connect(url,function(err,db){
+		if(err)
+			throw err;
+		db.collection('userData').find({uname:req.body.uname,password:req.body.password}).toArray(function(er,docs){
+			if(err)
+				throw err;
+			res.json(docs);
+			db.close();
+		})
+	})
+	//res.send("pass")
+})
+
+//	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
 app.get("/api",function(req,res){
 	var count;
@@ -114,12 +131,13 @@ app.get("/api",function(req,res){
 		if(err) throw err;
 		db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
 			if(err) throw err;
-			res.json(docs);
 			//count=docs[0].count;
 			//console.log(count+1)
+			db.close();
 		})
+		res.json(docs);
 	})
-	
+
 });
 
 
@@ -131,7 +149,7 @@ app.post("/inc",function(req,res){
 	console.log("Inside inc")
 	console.log(req.body)
 	//console.log(res.render("App.js"))
-	
+
 	mongoose.connect(url,function(err,db){
 		if(err) throw err;
 		db.collection('collectionTest1').find({_id:"003"}).toArray(function(err,docs){
@@ -147,7 +165,7 @@ app.post("/inc",function(req,res){
 			})
 			res.send("Incremented"+" "+JSON.stringify(docs)+" "+count+" "+intCount);
 		})
-	})	
+	})
 });
 
 

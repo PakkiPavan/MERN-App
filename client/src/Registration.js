@@ -11,8 +11,7 @@ class Registration extends React.Component
 	}
 	componentDidMount()
 	{
-		console.log("HIIIIIIII");
-		this.setState({count:this.state.count+1},()=>console.log(this.state.count))
+		
 	}
 	emailValidation()
 	{
@@ -37,13 +36,13 @@ class Registration extends React.Component
 	{
 		console.log('registering')
 		var mail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		var fname=document.getElementById('fname').value;
+		var uname=document.getElementById('uname').value;
 		var email=document.getElementById('email').value;
 		var password=document.getElementById('password').value;
 		var cpassword=document.getElementById('cpassword').value;
 
 
-		if(fname===""||email===""||password===""||cpassword==="")
+		if(uname===""||email===""||password===""||cpassword==="")
 			alert("All fields are mandatory")
 		else
 		{
@@ -64,7 +63,7 @@ class Registration extends React.Component
 						url:'register',
 						data:
 						{
-							fname:fname,
+							uname:uname,
 							email:email,
 							password:password
 						},
@@ -101,12 +100,14 @@ class Registration extends React.Component
 		})
 			return(
 				<div className="container">
-						<Link to="/">Home</Link>
+					<div>
+						<Link to="/"><button style={{cursor:'pointer'}}>Home</button></Link>
+					</div>
 							<div className="box">
 								<h1>Create an account</h1>
 									<form id="form" autoComplete="off">
 										<div className="inputBox">
-											<input type="text" name="fname" id="fname" required/>
+											<input type="text" name="uname" id="uname" required/>
 											<label>USERNAME</label>
 										</div>
 										<div className="inputBox">

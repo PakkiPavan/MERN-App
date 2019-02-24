@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import Home from './Home';
 import Registration from './Registration';
-
+import Login from './Login';
 //import * as serviceWorker from './serviceWorker';
 /*import {createStore} from 'redux';
 import {Provider} from 'react-redux';
@@ -17,9 +17,9 @@ ReactDOM.render(
 	<BrowserRouter>
 		<div>
 			<Route exact path="/" component={Home}/>
-			<Route exact path="/register" component={Registration}/>
-			<Route exact path="/login" component={Home}/>
-			<Route exact path="/like" component={App}/>
+			<Route path="/register" component={Registration}/>
+			<Route path="/login" component={Login}/>
+			<Route path="/like" component={App}/>
 
 		</div>
 	</BrowserRouter>,
