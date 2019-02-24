@@ -47,45 +47,49 @@ class Registration extends React.Component
 			alert("All fields are mandatory")
 		else
 		{
-			if(password!==cpassword)
-			{
-				$('#match').show();
-			}
+
 			if (mail.test(email)===false)
 				$('#format').show();
 			else
 			{
-
-				$('#match').hide();
-				$('#format').hide();
-				$.ajax({
-					type:'post',
-					url:'register',
-					data:
-					{
-						fname:fname,
-						email:email,
-						password:password
-					},
-					success:function(r)
-					{
-						console.log('SUCCESS');
-						console.log(r);
-						if(r==="Inserted")
+				if(password!==cpassword)
+				{
+					$('#match').show();
+				}
+				else {
+					$('#match').hide();
+					$('#format').hide();
+					$.ajax({
+						type:'post',
+						url:'register',
+						data:
 						{
-							$('#success').show();
-							//document.getElementById('#form').reset();
-							$('#form').get(0).reset();
+							fname:fname,
+							email:email,
+							password:password
+						},
+						success:function(r)
+						{
+							console.log('SUCCESS');
+							console.log(r);
+							if(r==="Inserted")
+							{
+								$('#success').show();
+								//document.getElementById('#form').reset();
+								$('#form').get(0).reset();
+							}
+						},
+						error:function()
+						{
+							alert("Something went wrong");
 						}
-					},
-					error:function()
-					{
-						alert("Something went wrong");
-					}
-				})
-			}
+					})
+				}
 
-		}
+				}
+
+
+			}
 	}
 
 	render()
