@@ -17,11 +17,11 @@ ReactDOM.render(
 	<BrowserRouter>
 		<div>
 			<Route exact path="/" component={Home}/>
-			<Route path="/register" component={Registration}/>
-			<Route path="/login" component={Home}/>
-			<Route path="/like" component={App}/>
-			
-		</div> 
+			<Route exact path="/register" component={Registration}/>
+			<Route exact path="/login" component={Home}/>
+			<Route exact path="/like" component={App}/>
+
+		</div>
 	</BrowserRouter>,
 	document.getElementById('root'));
 
