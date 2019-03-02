@@ -93,10 +93,20 @@
 	border:3px solid black;
 	margin:9px 0px;
 }
+.code{
+	border:3px solid black;
+	margin:9px 0px;
+}
+
 a{
 	color:white;
 	text-decoration: none;
 }
+.header{
+	left:50%;
+	/* transform: translate(10%); */
+}
+
 .copyrights{
 	position:absolute;
 	bottom:0;

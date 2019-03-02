@@ -85,6 +85,11 @@ body{
 	.copyrights{
 		top:715px;
 	}
+	.header{
+		left:50%;
+		transform: translate(-10%);
+	}
+
 }
 h1
 {

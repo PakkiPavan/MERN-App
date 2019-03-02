@@ -171,8 +171,10 @@ class MM1 extends React.Component
 	{
 		return(
 			<div>
-				<button className="btn"><Link to="/">Home</Link></button>&nbsp;
-				<button className="btn"><Link to="/rules">How to Play</Link></button>
+				<div className="header">
+					<button className="btn"><Link to="/">Home</Link></button>&nbsp;
+					<button className="btn"><Link to="/rules">How to Play</Link></button>
+				</div>
 				<div id="board">
 					<div className="colors">
 						<button className="green" id="green" value="green" onClick={this.props.currentColor}></button>
