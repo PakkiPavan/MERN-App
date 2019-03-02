@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import './App.css';
+import axios from 'axios';
 class Registration extends React.Component
 {
 	constructor(props)
@@ -11,11 +12,11 @@ class Registration extends React.Component
 	}
 	componentDidMount()
 	{
-		
+
 	}
 	emailValidation()
 	{
-		var mail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var mail=/^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(\.\w{2,3})+$/;
 		var email=document.getElementById('email').value;
 		if (mail.test(email)===false&&email!=='')
 			$('#format').show();
@@ -32,10 +33,10 @@ class Registration extends React.Component
 		else
 			$('#match').hide();
 	}
-	register()
+	register(e)
 	{
 		console.log('registering')
-		var mail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var mail=/^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(\.\w{2,3})+$/;
 		var uname=document.getElementById('uname').value;
 		var email=document.getElementById('email').value;
 		var password=document.getElementById('password').value;
@@ -55,34 +56,42 @@ class Registration extends React.Component
 				{
 					$('#match').show();
 				}
-				else {
+				else
+				{
 					$('#match').hide();
 					$('#format').hide();
-					$.ajax({
-						type:'post',
-						url:'register',
-						data:
-						{
-							uname:uname,
-							email:email,
-							password:password
-						},
-						success:function(r)
-						{
-							console.log('SUCCESS');
-							console.log(r);
-							if(r==="Inserted")
-							{
-								$('#success').show();
-								//document.getElementById('#form').reset();
-								$('#form').get(0).reset();
-							}
-						},
-						error:function()
-						{
-							alert("Something went wrong");
-						}
+					axios.post('/register',{uname:uname,email:email,password:password})
+					.then(res=>{
+						console.log(res);
+						$('#form').get(0).reset();
+						$('#success').show();
 					})
+					.catch(err=>alert("Something went wrong"))
+					// $.ajax({
+					// 	type:'post',
+					// 	url:'register',
+					// 	data:
+					// 	{
+					// 		uname:uname,
+					// 		email:email,
+					// 		password:password
+					// 	},
+					// 	success:function(r)
+					// 	{
+					// 		console.log('SUCCESS');
+					// 		console.log(r);
+					// 		if(r==="Inserted")
+					// 		{
+					// 			$('#success').show();
+					// 			//document.getElementById('#form').reset();
+					// 			$('#form').get(0).reset();
+					// 		}
+					// 	},
+					// 	error:function()
+					// 	{
+					// 		alert("Something went wrong");
+					// 	}
+					// })
 				}
 
 				}
@@ -101,7 +110,7 @@ class Registration extends React.Component
 			return(
 				<div className="container">
 					<div>
-						<Link to="/"><button style={{cursor:'pointer'}}>Home</button></Link>
+						<Link to="/"><button className="button">Home</button></Link>
 					</div>
 							<div className="box">
 								<h1>Create an account</h1>

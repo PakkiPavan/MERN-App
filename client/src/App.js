@@ -27,9 +27,9 @@ class App extends Component {
 		//Without Redux
 		/*
 			fetch('/api')
-			.then((res)=>res.json())	
-			.then(countJson=>this.setState({count:countJson[0].count},()=>console.log("Count fetched",countJson[0])));		
-		*/	
+			.then((res)=>res.json())
+			.then(countJson=>this.setState({count:countJson[0].count},()=>console.log("Count fetched",countJson[0])));
+		*/
 		//console.log(this.state.count)
 		/*
 			// Redux
@@ -40,14 +40,15 @@ class App extends Component {
 	componentDidUpdate()
 	{
 		//console.log("componentDidUpdate");
-		//console.log(this.state.count)		
+		//console.log(this.state.count)
 	}
 	test()
 	{
 		console.log("Inside test");
-		document.getElementById("like").childNodes[0].style.pointerEvents="none";
-		document.getElementById("like").childNodes[0].style.color="green";
-		
+		console.log(document.getElementById("like").childNodes[1]);
+		document.getElementById("like").childNodes[2].style.pointerEvents="none";
+		document.getElementById("like").childNodes[2].style.color="green";
+
 		this.setState({count:this.state.count+1},()=>console.log("With callback ",this.state.count))
 		console.log("Without callback ",this.state.count)
 		$.ajax({
@@ -66,9 +67,9 @@ class App extends Component {
 				console.log("Error")
 			}
 		})
-		
+
 	}
-	
+
 	render() {
 		if(this.state.count!==-1)
 		{
@@ -76,7 +77,7 @@ class App extends Component {
 				<div id="like">
 					<Link to="/">Home</Link><br/>
 					<i className="fa fa-thumbs-up fa-2x" onClick={this.test.bind(this)}></i>
-					<h1>{this.state.count}</h1>			
+					<h1>{this.state.count}</h1>
 				</div>
 			);
 		}
@@ -88,7 +89,7 @@ class App extends Component {
 				</div>
 			)
 		}
-		
+
 	}
 }
 

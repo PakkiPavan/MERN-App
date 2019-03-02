@@ -8,15 +8,14 @@ class Home extends React.Component
 		super(props)
 		this.state={}
 	}
-	
+
 	render()
 	{
 		return(
 		<div>
-			<Link to="/register">Register here</Link><br/>
-			<Link to="/login">Login here</Link><br/>
-			<Link to="/like">Like</Link>
-		</div>	
+			<Link to="/register"><button className="button">SignUp</button></Link><br/>
+			<Link to="/login"><button className="button">Login</button></Link><br/>
+		</div>
 		)
 	}
 }

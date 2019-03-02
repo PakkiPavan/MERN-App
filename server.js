@@ -44,6 +44,7 @@ var userModel=mongoose.model("userData",userSchema)
 
 //static fie declaration
 //app.use(express.static(path.join(__dirname,'client/build')));
+app.use(express.static(path.join(__dirname,'client/public/index.html')));
 
 //production mode start
 if(process.env.NODE_ENV==='production')
@@ -106,23 +107,49 @@ app.post('/register',function(req,res){
 })
 app.post('/login',function(req,res){
 	//console.log(req.body)
-	sess=req.session;
-	sess.uname=req.body.uname
-	console.log(req.session)
+	//console.log(req.session.uname)
 	mongoose.connect(url,function(err,db){
 		if(err)
 			throw err;
 		db.collection('userData').find({uname:req.body.uname,password:req.body.password}).toArray(function(er,docs){
 			if(err)
 				throw err;
-			res.json(docs);
-			db.close();
+				// if(docs.length>0)
+				// {
+				// 	sess=req.session;
+				// 	sess.uname=req.body.uname;
+				// 	console.log(req.session.uname)
+				// 	console.log(docs.length)
+				//
+				// }
+				// else
+				// {
+				// 	res.send("fail")
+				//
+				// }
+				//console.log(docs)
+				res.json(docs);
+				//res.redirect('/home');
+				db.close();
 		})
 	})
 	//res.send("pass")
 })
 
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+app.get('/home',function(req,res){
+	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+	console.log("Name: ")
+	res.send("HOME")
+	//res.sendFile(__dirname+"/client/public/index.html")
+	// if(req.session.uname)
+	// {
+	// 	console.log(__dirname)
+	// 	//res.sendFile(__dirname+"/index.html")
+	// }
+	// else
+	// 	res.send("Login to access this page")
+})
 
 app.get("/api",function(req,res){
 	var count;
@@ -133,9 +160,10 @@ app.get("/api",function(req,res){
 			if(err) throw err;
 			//count=docs[0].count;
 			//console.log(count+1)
+			res.json(docs);
 			db.close();
 		})
-		res.json(docs);
+
 	})
 
 });
