@@ -13,8 +13,8 @@ class Home extends React.Component
 	{
 		return(
 		<div>
-			<Link to="/register"><button className="button">SignUp</button></Link><br/>
-			<Link to="/login"><button className="button">Login</button></Link><br/>
+			<Link to="/register"><div className="btn"><button>SignUp</button></div></Link><br/>
+			<Link to="/login"><div className="btn"><button>Login</button></div></Link><br/>
 		</div>
 		)
 	}

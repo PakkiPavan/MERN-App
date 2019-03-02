@@ -23,7 +23,7 @@ body{
 } */
 .box{
 	position:absolute;
-	top:60%;
+	top:65%;
 	left:50%;
 	transform:translate(-50%,-50%);
 	width:400px;
@@ -154,6 +154,15 @@ p{
 	display:none;
 	color:green;
 	font-size:20px;
+}
+#fail{
+	display:none;
+	position:absolute;
+	left:50%;
+	transform:translate(-50%,-50%);
+	color:red;
+	font-size:20px;
+	text-align:center;
 }
 .button{
 	background-color:#ad279e;

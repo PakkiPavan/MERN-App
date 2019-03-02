@@ -110,7 +110,7 @@ class Registration extends React.Component
 			return(
 				<div className="container">
 					<div>
-						<Link to="/"><button className="button">Home</button></Link>
+						<Link to="/"><div className="btn"><button>Home</button></div></Link>
 					</div>
 							<div className="box">
 								<h1>Create an account</h1>

@@ -9,7 +9,7 @@ class Login extends React.Component
   constructor(props)
   {
     super(props);
-    this.state={home:false,uname:''}
+    this.state={pass:false,uname:''}
   }
   login()
   {
@@ -25,7 +25,11 @@ class Login extends React.Component
         console.log(res.data);
         if(res.data.length>0)
         {
-          this.setState({home:!this.state.home,uname:res.data[0].uname})
+          this.setState({pass:!this.state.pass,uname:res.data[0].uname})
+        }
+        else
+        {
+          $('#fail').show();
         }
       })
       .catch(err=>alert("Something went wrong"))
@@ -58,12 +62,18 @@ class Login extends React.Component
       // })
     }
   }
-  render(){
-    if(!this.state.home)
+  render()
+  {
+    $(document).ready(function(){
+      $('input').focus(function(){
+        $('#fail').hide();
+      })
+    })
+    if(!this.state.pass)
     {
       return(
         <div className="container">
-            <Link to="/"><button className="button">Home</button></Link>
+          <Link to="/"><div className="btn"><button>Home</button></div></Link>
               <div className="box">
                 <h1>Login</h1>
                   <form id="form" autoComplete="off">
@@ -76,6 +86,7 @@ class Login extends React.Component
                       <label>PASSWORD</label>
                     </div>
                     <div className="btn">
+                      <p id="fail">Invalid Credentials</p>
                       <button type="button" onClick={this.login.bind(this)}>LOGIN</button>
                     </div>
                   </form>

@@ -108,6 +108,14 @@ app.post('/register',function(req,res){
 app.post('/login',function(req,res){
 	//console.log(req.body)
 	//console.log(req.session.uname)
+	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+	sess=req.session;
+	sess.uname=req.body.uname;
+	console.log("uname: "+sess.uname)
+	if(!sess.uname)
+	{
+		res.send("Login to access this page")
+	}
 	mongoose.connect(url,function(err,db){
 		if(err)
 			throw err;
