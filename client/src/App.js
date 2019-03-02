@@ -75,9 +75,9 @@ class App extends Component {
 		{
 			return (
 				<div id="like">
-					<Link to="/">Home</Link><br/>
+					<Link to="/"><div className="btn"><button>Home</button></div></Link><br/>
 					<i className="fa fa-thumbs-up fa-2x" onClick={this.test.bind(this)}></i>
-					<h1>{this.state.count}</h1>
+					&nbsp;&nbsp;<b style={{fontSize:'20px'}}>{this.state.count}</b>
 				</div>
 			);
 		}

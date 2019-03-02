@@ -13,9 +13,9 @@ class Dashboard extends React.Component
   render(){
     return(
       <div>
-        <Link to="/"><button className="button">Home</button></Link>
+        <Link to="/"><div className="btn"><button>Home</button></div></Link>
         <h1>Welcome {this.props.uname}</h1>
-        <Link to="/like"><button className="button">Like</button></Link>
+        <Link to="/like"><div className="btn"><button>Like</button></div></Link>
       </div>
     );
   }
