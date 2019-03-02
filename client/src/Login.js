@@ -73,7 +73,7 @@ class Login extends React.Component
     {
       return(
         <div className="container">
-          <Link to="/"><div className="btn"><button>Home</button></div></Link>
+          <Link to="/"><button className="btn">Home</button></Link>
               <div className="box">
                 <h1>Login</h1>
                   <form id="form" autoComplete="off">
@@ -85,9 +85,9 @@ class Login extends React.Component
                       <input type="password" name="password" id="password" required/>
                       <label>PASSWORD</label>
                     </div>
-                    <div className="btn">
+                    <div style={{position:'relative'}}>
                       <p id="fail">Invalid Credentials</p>
-                      <button type="button" onClick={this.login.bind(this)}>LOGIN</button>
+                      <button type="button" className="btn" onClick={this.login.bind(this)}>LOGIN</button>
                     </div>
                   </form>
               </div>

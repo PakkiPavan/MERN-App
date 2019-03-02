@@ -13,8 +13,9 @@ class Home extends React.Component
 	{
 		return(
 		<div>
-			<Link to="/register"><div className="btn"><button>SignUp</button></div></Link><br/>
-			<Link to="/login"><div className="btn"><button>Login</button></div></Link><br/>
+			<Link to="/register"><button className="btn">SignUp</button></Link><br/>
+			<Link to="/login"><button className="btn">Login</button></Link><br/>
+			<Link to="/MMHome"><button className="btn">Mastermind</button></Link><br/>
 		</div>
 		)
 	}

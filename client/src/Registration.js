@@ -110,7 +110,7 @@ class Registration extends React.Component
 			return(
 				<div className="container">
 					<div>
-						<Link to="/"><div className="btn"><button>Home</button></div></Link>
+						<Link to="/"><button className="btn">Home</button></Link>
 					</div>
 							<div className="box">
 								<h1>Create an account</h1>
@@ -122,7 +122,7 @@ class Registration extends React.Component
 										<div className="inputBox">
 											<input type="text"name="email" id="email" required onBlur={this.emailValidation.bind(this)} required/>
 											<label>EMAIL</label>
-											<p id="format" style={{display:'none',color:'red'}}>Enter vaid Email ID</p>
+											<p id="format" className="warning" style={{display:'none',color:'red'}}>Enter vaid Email ID</p>
 										</div>
 										<div className="inputBox">
 											<input type="password" name="password" id="password" required/>
@@ -131,11 +131,11 @@ class Registration extends React.Component
 										<div className="inputBox">
 											<input type="password" name="cpassword" id="cpassword" required onBlur={this.passwordMatch.bind(this)}/>
 											<label>CONFIRM PASSWORD</label>
-											<p id="match" style={{display:'none',color:'red'}}>Confirm password should match with password</p>
+											<p id="match" className="warning" style={{display:'none',color:'red'}}>Confirm password should match with password</p>
 										</div>
-										<div className="btn">
-											<button type="button" onClick={this.register.bind(this)}>REGISTER</button>
-											<p id="success">Registration Completed Successfully</p>
+										<div style={{position:'relative'}}>
+											<p id="success">Registration Completed Successfully<br/>Click <Link to="/login">here</Link> to Login</p>
+											<button type="button" className="btn" onClick={this.register.bind(this)}>REGISTER</button>
 										</div>
 									</form>
 							</div>

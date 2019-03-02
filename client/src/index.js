@@ -5,11 +5,20 @@ import App from './App';
 import Home from './Home';
 import Registration from './Registration';
 import Login from './Login';
+import Masterminds from './Masterminds';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import MM1 from './MM1';
+import MMHome from './MMHome';
+import MMReducer from './MMReducer';
+import {BrowserRouter,Route} from 'react-router-dom';
+import Rules from './Rules';
+const store=createStore(MMReducer);
+
 //import * as serviceWorker from './serviceWorker';
 /*import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import LikeReducer from './LikeReducer';*/
-import {BrowserRouter,Route} from 'react-router-dom';
 
 //const store=createStore(LikeReducer);
 
@@ -20,7 +29,12 @@ ReactDOM.render(
 			<Route path="/register" component={Registration}/>
 			<Route path="/login" component={Login}/>
 			<Route path="/like" component={App}/>
-
+			<Route path="/mastermind" component={Masterminds}/>
+			<Provider store={store}>
+				<Route path="/MMHome" component={MMHome}/>
+				<Route path="/rules" component={Rules}/>
+				<Route path="/play" component={MM1}/>
+			</Provider>
 		</div>
 	</BrowserRouter>,
 	document.getElementById('root'));

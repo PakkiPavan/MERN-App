@@ -126,7 +126,7 @@ h1
 	color:black;
 }
 
-.btn{
+/* .btn{
 	padding:10px;
 	position:relative;
 	margin-bottom: 10px;
@@ -144,19 +144,37 @@ h1
 	width:133px;
 	color:white;
 	font-size:16px;
-}
-/* a{
-	color:white;
 } */
-p{
+.btn{
+	padding:10px;
+	position:relative;
+	left:50%;
+	transform: translate(-50%);
+	background-color: #e10050;
+	outline:none;
+	border:none;
+	cursor:pointer;
+	border-radius: 5px;
+	width:133px;
+	color:white;
+	font-size:16px;
+	margin-bottom: 10px;
+	top:-5px;
+}
+.warning{
 	position:absolute;
 	bottom:-5px;
 	font-size: 20px;
 }
 #success{
 	display:none;
+	position:absolute;
+	left:50%;
+	transform:translate(-50%,-50%);
 	color:green;
 	font-size:20px;
+	top:-48px;
+	width:fit-content;
 }
 #fail{
 	display:none;
@@ -165,9 +183,11 @@ p{
 	transform:translate(-50%,-50%);
 	color:red;
 	font-size:20px;
-	text-align:center;
+	top:-48px;
 }
-
+p{
+	text-align: center;
+}
 
 .fa-thumbs-up{
 	color:grey;

@@ -111,7 +111,7 @@ app.post('/login',function(req,res){
 	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	sess=req.session;
 	sess.uname=req.body.uname;
-	console.log("uname: "+sess.uname)
+	console.log("Username: "+sess.uname)
 	if(!sess.uname)
 	{
 		res.send("Login to access this page")

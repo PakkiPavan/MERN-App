@@ -1,0 +1,103 @@
+#board{
+	background-color:#4e2c52;
+	width:364px;
+}
+.circle{
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	border:3px solid black;
+	margin:5px;
+	outline:none;
+	cursor:pointer;
+}
+.green,.red,.yellow,.blue,.pink,.skyblue,.black{
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	border:none;
+	margin:5px;
+	outline:none;
+	cursor:pointer;
+}
+@keyframes blink{
+	from{border:2px solid black}
+	to{border:2px solid white}
+}
+.green{
+	background-color:green;
+	animation:blink 0.2s infinite;
+}
+.red{
+	background-color:red;
+}
+.yellow{
+	background-color:yellow;
+}
+.blue{
+	background-color:blue;
+}
+.pink{
+	background-color:pink;
+}
+.skyblue{
+	background-color:skyblue;
+}
+.black{
+	background-color:black;
+}
+.check{
+	position:absolute;
+	height:44px;
+	cursor:pointer;
+	background-color:#f10acc;
+	border:none;
+	outline:none;
+	color:white;
+	font-size:15px;
+	border-radius:10px;
+}
+.row{
+	pointer-events:none;
+	width:200px;
+
+}
+.hint{
+	position:absolute;
+	display:inline-block;
+	background-color:#f10acc;
+	height:44px;
+	width:42px;
+	left:265px;
+	border-radius:5px;
+}
+.hint-up{
+	border-radius:50%;
+	height:14px;
+	width:14px;
+	border:none;
+	outline:none;
+	position:absolute;
+	top:5px;
+}
+.hint-down{
+	border-radius:50%;
+	height:14px;
+	width:14px;
+	border:none;
+	outline:none;
+	position:absolute;
+	bottom:5px;
+}
+.colors{
+	border:3px solid black;
+	margin:9px 0px;
+}
+.copyrights{
+	position:absolute;
+	bottom:0;
+	left:50%;
+	transform:translate(-50%);
+	width:fit-content;
+	font-size:20px;
+}
