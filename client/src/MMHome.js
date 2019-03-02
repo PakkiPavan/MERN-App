@@ -8,8 +8,8 @@ class MMHome extends React.Component
 	{
 		return(
 			<div>
-				<Link to="/play"><button className="btn">Play game</button><br/></Link>
-				<Link to="/rules"><button className="btn">How to Play</button><br/></Link>
+				<button className="btn"><Link to="/play">Play game</Link></button><br/>
+				<button className="btn"><Link to="/rules">How to Play</Link></button><br/>
 
 				<p className="copyrights">&copy; Copyrights Pavan Pakki 2019</p>
 			</div>

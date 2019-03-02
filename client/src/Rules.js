@@ -32,8 +32,8 @@ class Rules extends React.Component
 	{
 		return(
 			<div className="rules">
-				<Link to="/MMHome"><button className="btn">Home</button>&nbsp;</Link>
-				<Link to="/play"><button className="btn">Play game</button><br/></Link>
+				<button className="btn"><Link to="/MMHome">Home</Link></button>&nbsp;
+				<button className="btn"><Link to="/play">Play game</Link></button><br/>
 
 				<b style={{fontSize:'20px'}}>How to play?</b>
 				<ul>
