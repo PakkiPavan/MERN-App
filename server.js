@@ -143,7 +143,9 @@ app.post('/login',function(req,res){
 	})
 	//res.send("pass")
 })
-
+app.get('/*',function(req,res){
+	res.send('Login to access this page')
+})
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 app.get('/home',function(req,res){
 	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');

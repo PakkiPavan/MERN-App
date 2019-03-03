@@ -12,7 +12,7 @@ export function mapStateToProps(state)
 		code:state.code,
 		flag:state.flag,
 		question:state.question
-		
+
 	}
 }
 export function mapDispatchToProps(dispatch)
@@ -20,7 +20,7 @@ export function mapDispatchToProps(dispatch)
 	return{
 		currentColor:(e)=>{
 			dispatch({type:"currentColor",value:e.target.value});
-			console.log(document.getElementById(e.target.id))
+			//console.log(document.getElementById(e.target.id))
 			for(var i=0;i<7;i++)
 			{
 				if(i===0)

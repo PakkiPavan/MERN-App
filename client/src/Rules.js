@@ -1,6 +1,6 @@
 import React from 'react';
 import './MM.css';
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 /*
 At the beginning of each game the computer generates a secret code of four colors. <br/>
 The colors are always chosen from the seven colors. Duplicates are not allowed.<br/>

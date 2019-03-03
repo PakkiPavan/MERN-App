@@ -83,13 +83,28 @@ body{
 		top:350px;
 	}
 	.copyrights{
-		top:715px;
+		top:740px;
 	}
 	.header{
 		left:50%;
 		transform: translate(-10%);
 	}
 
+}
+@media(max-width:575px) {
+	.copyrights{
+		top:730px;
+	}
+}
+@media(max-width:303px) {
+	.copyrights{
+		top:800px;
+	}
+}
+@media(max-width:285px) {
+	.copyrights{
+		top:840px;
+	}
 }
 h1
 {

@@ -3,7 +3,7 @@ import './MM.css';
 import {connect} from 'react-redux';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 //import styled from 'styled-components';
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class MM1 extends React.Component
 {
@@ -80,8 +80,8 @@ class MM1 extends React.Component
 				t.push(this.props.code[i])
 			}
 			t.reverse();
-			console.log("t")
-			console.log(t)
+			//console.log("t")
+			//console.log(t)
 
 		//
 		var temp=[]
@@ -98,15 +98,12 @@ class MM1 extends React.Component
 			}
 
 		}
-		//console.log(u.length)
-		//console.log(temp.length)
-
 		if(temp.length!==u.length)
 			alert("Duplicate colors not allowed")
 		else
 		{
-			console.log("this.props.index")
-			console.log(this.props.index-1)
+			//console.log("this.props.index")
+			//console.log(this.props.index-1)
 			if(this.props.index!==11)
 			{
 				board.childNodes[this.props.index].style.pointerEvents="auto";
@@ -125,13 +122,14 @@ class MM1 extends React.Component
 					cc++;
 			}
 
-			console.log(`cp=${cp} cc=${cc}`)
+			//console.log(`cp=${cp} cc=${cc}`)
 			if(cp===4)
 			{
 				alert(`You won the game in ${this.props.index-1} attempts`)
 				//window.location="http://localhost:3000/";
 				//window.location="https://mastermind-board-game.herokuapp.com";
-				window.location="https://mastermind-game.netlify.com/";
+				//window.location="https://mastermind-game.netlify.com/";
+				window.location="/MMHome";
 			}
 
 			else
