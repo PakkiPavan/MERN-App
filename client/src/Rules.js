@@ -52,7 +52,9 @@ class Rules extends React.Component
 				</ul>
 				<center><b style={{fontSize:'20px'}}>Good Luck!!</b></center>
 
-					<p className="copyrights">&copy; Copyrights Pavan Pakki 2019</p>
+				<div className="footer">
+					<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+				</div>
 			</div>
 		)
 	}

@@ -11,6 +11,16 @@ class Login extends React.Component
     super(props);
     this.state={pass:false,uname:''}
   }
+  componentDidMount()
+  {
+    axios.get('/session')
+    .then(res=>{
+        console.log(res.data);
+        if(res.data!=="")
+          this.setState({pass:true,uname:res.data})
+    })
+    .catch(err=>alert("Something went wrong"))
+  }
   login()
   {
     console.log("Logging in");
@@ -64,7 +74,9 @@ class Login extends React.Component
   }
   render()
   {
+    var self=this;
     $(document).ready(function(){
+      console.log("pass is",self.state.pass);
       $('input').focus(function(){
         $('#fail').hide();
       })
@@ -74,7 +86,7 @@ class Login extends React.Component
       return(
         <div className="container">
           <Link to="/"><button className="btn">Home</button></Link>
-              <div className="box">
+              <div className="box login">
                 <h1>Login</h1>
                   <form id="form" autoComplete="off">
                     <div className="inputBox">
@@ -91,6 +103,9 @@ class Login extends React.Component
                     </div>
                   </form>
               </div>
+              <div className="footer">
+        				<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+        			</div>
         </div>
       );
     }

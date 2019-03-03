@@ -271,7 +271,9 @@ class MM1 extends React.Component
 
 				</div><br/><br/>
 
-			<p className="copyrights" style={{bottom:'-190px'}}>&copy; Copyrights Pavan Pakki 2019</p>
+				<div className="footer">
+					<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+				</div>
 			</div>
 		);
 	}

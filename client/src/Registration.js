@@ -139,6 +139,9 @@ class Registration extends React.Component
 										</div>
 									</form>
 							</div>
+							<div className="footer">
+								<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+							</div>
 				</div>
 			)
 

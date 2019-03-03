@@ -143,23 +143,49 @@ app.post('/login',function(req,res){
 	})
 	//res.send("pass")
 })
-app.get('/*',function(req,res){
-	res.send('Login to access this page')
+app.get('/login',function(req,res){
+	//console.log(sess)
+	if(sess.uname)
+		res.send("Logged in")
+	else
+		res.send('Login to access this page')
+})
+app.get('/session',function(req,res){
+		res.send(req.session.uname);
 })
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-app.get('/home',function(req,res){
-	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-	console.log("Name: ")
-	res.send("HOME")
-	//res.sendFile(__dirname+"/client/public/index.html")
-	// if(req.session.uname)
-	// {
-	// 	console.log(__dirname)
-	// 	//res.sendFile(__dirname+"/index.html")
-	// }
-	// else
-	// 	res.send("Login to access this page")
+app.get('/logout',function(req,res){
+	console.log('logout')
+	console.log(req.session)
+	req.session.destroy(function(err){
+		if(err)
+		{
+			console.log(err)
+			res.send("fail")
+		}
+		else
+		{
+			console.log('logout else')
+			console.log(req.session)
+			res.send("pass")
+		}
+
+	})
 })
+
+// app.get('/home',function(req,res){
+// 	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+// 	console.log("Name: ")
+// 	res.send("HOME")
+// 	//res.sendFile(__dirname+"/client/public/index.html")
+// 	// if(req.session.uname)
+// 	// {
+// 	// 	console.log(__dirname)
+// 	// 	//res.sendFile(__dirname+"/index.html")
+// 	// }
+// 	// else
+// 	// 	res.send("Login to access this page")
+// })
 
 app.get("/api",function(req,res){
 	var count;

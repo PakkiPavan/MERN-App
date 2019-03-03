@@ -109,9 +109,11 @@ a{
 
 .copyrights{
 	position:absolute;
-	bottom:0;
 	left:50%;
-	transform:translate(-50%);
+	top:50%;
+	transform:translate(-50%,-50%);
 	width:fit-content;
 	font-size:20px;
+	color:white;
+	/* display:flex; */
 }

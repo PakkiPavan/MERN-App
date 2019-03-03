@@ -8,11 +8,13 @@ class MMHome extends React.Component
 	{
 		return(
 			<div>
-				<center><h1 style={{color:'#9c258d',fontWeight:'900',fontFamily:"-webkit-body"}}>MASTERMIND</h1></center>
+				<center><h1 style={{color:'#9c258d',fontWeight:'900',fontFamily:"-webkit-body"}}>MASTERMIND</h1></center><br/>
 				<button className="btn"><Link to="/play">Play game</Link></button><br/>
 				<button className="btn"><Link to="/rules">How to Play</Link></button><br/>
 
-				<p className="copyrights">&copy; Copyrights Pavan Pakki 2019</p>
+				<div className="footer">
+					<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+				</div>
 			</div>
 
 		);

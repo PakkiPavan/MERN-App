@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import MM1 from './MM1';
 import MMHome from './MMHome';
 import MMReducer from './MMReducer';
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {BrowserRouter,Route} from 'react-router-dom';
 import Rules from './Rules';
 const store=createStore(MMReducer);
 
