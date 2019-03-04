@@ -130,7 +130,9 @@ li{
 }
 @media(max-width:888px){
 	.mastermindHeading{
-		top:15%;
+		top:25%;
+		left: 55%;
+		font-size: 25px;
 	}
 }
 /* .copyrights{

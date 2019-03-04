@@ -151,8 +151,8 @@ app.get('/login',function(req,res){
 		res.send('Login to access this page')
 })
 
-app.get('/*',function(req,res){
-	res.sendFile(path.join(__dirname,'client/public/index.html'));
+app.get('/register',function(req,res){
+	res.send("Access denied. Login to access this page");
 })
 
 app.get('/session',function(req,res){
