@@ -99,7 +99,10 @@ class Registration extends React.Component
 
 			}
 	}
-
+	nav()
+	{
+		$('.nav').toggle(400);
+	}
 	render()
 	{
 		$(document).ready(function(){
@@ -109,9 +112,15 @@ class Registration extends React.Component
 		})
 			return(
 				<div className="container">
-					<div>
-						<Link to="/"><button className="btn">Home</button></Link>
-					</div>
+							<div className="mainHeader">
+								<div className="pavanLogo" onClick={this.nav.bind(this)}>
+									<span className="pp">PP</span>
+								</div>
+								<div className="nav">
+									<Link to="/"><button className="btn">Home</button></Link>
+									<Link to="/login"><button className="btn">Login</button></Link>
+								</div>
+							</div>
 							<div className="box">
 								<h1>Create an account</h1>
 									<form id="form" autoComplete="off">
@@ -122,7 +131,7 @@ class Registration extends React.Component
 										<div className="inputBox">
 											<input type="text"name="email" id="email" required onBlur={this.emailValidation.bind(this)} required/>
 											<label>EMAIL</label>
-											<p id="format" className="warning" style={{display:'none',color:'red'}}>Enter vaid Email ID</p>
+											<p id="format" className="warning" style={{display:'none',color:'red',marginLeft:'30%'}}>Enter vaid Email ID</p>
 										</div>
 										<div className="inputBox">
 											<input type="password" name="password" id="password" required/>
@@ -134,8 +143,8 @@ class Registration extends React.Component
 											<p id="match" className="warning" style={{display:'none',color:'red'}}>Confirm password should match with password</p>
 										</div>
 										<div style={{position:'relative'}}>
-											<p id="success">Registration Completed Successfully<br/>Click <Link to="/login">here</Link> to Login</p>
-											<button type="button" className="btn" onClick={this.register.bind(this)}>REGISTER</button>
+											<p id="success">Registration Completed Successfully<br/>Click <Link to="/login" style={{color:'blue'}}>here</Link> to Login</p>
+											<button type="button" className="btn submit" onClick={this.register.bind(this)}>REGISTER</button>
 										</div>
 									</form>
 							</div>

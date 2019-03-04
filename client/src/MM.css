@@ -1,6 +1,10 @@
 #board{
 	background-color:#4e2c52;
 	width:364px;
+	position: absolute;
+	top:74%;
+	left:50%;
+	transform: translate(-50%,-50%);
 }
 .circle{
 	width:40px;
@@ -97,7 +101,11 @@
 	border:3px solid black;
 	margin:9px 0px;
 }
-
+.rules{
+	position:absolute;
+	top:200px;
+	left:20px;
+}
 a{
 	color:white;
 	text-decoration: none;
@@ -106,8 +114,20 @@ a{
 	left:50%;
 	/* transform: translate(10%); */
 }
-
-.copyrights{
+li{
+	font-size: 20px;
+}
+.mastermindHeading{
+	color:white;
+	font-weight:900;
+	font-family:-webkit-body;
+	float:left;
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+}
+/* .copyrights{
 	position:absolute;
 	left:50%;
 	top:50%;
@@ -115,5 +135,12 @@ a{
 	width:fit-content;
 	font-size:20px;
 	color:white;
-	/* display:flex; */
+} */
+@media(max-width:888px){
+	#board{
+		top:95%;
+	}
+	.rules{
+		top:135px;
+	}
 }

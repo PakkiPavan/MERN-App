@@ -72,6 +72,10 @@ class Login extends React.Component
       // })
     }
   }
+  nav()
+	{
+		$('.nav').toggle(400);
+	}
   render()
   {
     var self=this;
@@ -85,7 +89,15 @@ class Login extends React.Component
     {
       return(
         <div className="container">
-          <Link to="/"><button className="btn">Home</button></Link>
+          <div className="mainHeader">
+            <div className="pavanLogo" onClick={this.nav.bind(this)}>
+              <span className="pp">PP</span>
+            </div>
+            <div className="nav">
+              <Link to="/"><button className="btn">Home</button></Link>
+              <Link to="/register"><button className="btn">SignUp</button></Link>
+            </div>
+          </div>
               <div className="box login">
                 <h1>Login</h1>
                   <form id="form" autoComplete="off">
@@ -99,7 +111,7 @@ class Login extends React.Component
                     </div>
                     <div style={{position:'relative'}}>
                       <p id="fail">Invalid Credentials</p>
-                      <button type="button" className="btn" onClick={this.login.bind(this)}>LOGIN</button>
+                      <button type="button" className="btn submit" onClick={this.login.bind(this)}>LOGIN</button>
                     </div>
                   </form>
               </div>

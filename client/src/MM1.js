@@ -3,6 +3,7 @@ import './MM.css';
 import {connect} from 'react-redux';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 //import styled from 'styled-components';
+import $ from 'jquery';
 import {Link} from 'react-router-dom';
 
 class MM1 extends React.Component
@@ -165,14 +166,26 @@ class MM1 extends React.Component
 		alert("Game Over")
 		alert("Secret code is displayed in the last row")
 	}
+	nav()
+	{
+		$('.nav').toggle(400);
+	}
+
 	render()
 	{
 		return(
 			<div>
-				<div className="header">
-					<button className="btn"><Link to="/">Home</Link></button>&nbsp;
-					<button className="btn"><Link to="/rules">How to Play</Link></button>
+				<div className="mainHeader">
+					<div className="pavanLogo" onClick={this.nav.bind(this)}>
+						<span className="pp">PP</span>
+					</div>
+					<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
+					<div className="nav">
+						<Link to="/"><button className="btn">Home</button></Link>
+						<Link to="/rules"><button className="btn">How to Play</button></Link>
+					</div>
 				</div>
+
 				<div id="board">
 					<div className="colors">
 						<button className="green" id="green" value="green" onClick={this.props.currentColor}></button>

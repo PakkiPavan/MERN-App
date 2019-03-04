@@ -145,7 +145,7 @@ app.post('/login',function(req,res){
 })
 app.get('/login',function(req,res){
 	//console.log(sess)
-	if(sess.uname)
+	if(sess)
 		res.send("Logged in")
 	else
 		res.send('Login to access this page')

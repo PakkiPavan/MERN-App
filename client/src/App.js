@@ -69,16 +69,45 @@ class App extends Component {
 		})
 
 	}
-
+	nav()
+	{
+		$('.nav').toggle(400);
+	}
+	logout()
+  {
+    axios.get('/logout')
+    .then(res=>{
+        console.log(res);
+        if(res.data==="pass")
+          this.setState({logout:!this.state.logout})
+    })
+    .catch(err=>alert("Something went wrong"))
+  }
 	render() {
 		if(this.state.count!==-1)
 		{
 			return (
-				<div id="like">
-					<Link to="/"><div className="btn"><button>Home</button></div></Link><br/>
-					<i className="fa fa-thumbs-up fa-2x" onClick={this.test.bind(this)}></i>
-					&nbsp;&nbsp;<b style={{fontSize:'20px'}}>{this.state.count}</b>
-				</div>
+				<div>
+					<div className="mainHeader">
+            <div className="pavanLogo" onClick={this.nav.bind(this)}>
+              <span className="pp">PP</span>
+            </div>
+            <span className="profile">Welcome {this.props.uname}</span>
+            <div className="nav">
+              <button className="btn" onClick={this.logout.bind(this)}>Logout</button>
+            </div>
+          </div>
+
+					<div id="like">
+						<i className="fa fa-thumbs-up fa-2x" onClick={this.test.bind(this)}></i>
+						&nbsp;&nbsp;<b style={{fontSize:'20px'}}>{this.state.count}</b>
+					</div>
+
+					<div className="footer">
+						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
+					</div>
+
+			</div>
 			);
 		}
 		else
