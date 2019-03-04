@@ -124,8 +124,14 @@ li{
 	float:left;
 	position:absolute;
 	left:50%;
-	top:50%;
+	top:20%;
 	transform:translate(-50%,-50%);
+	font-size:38px;
+}
+@media(max-width:888px){
+	.mastermindHeading{
+		top:15%;
+	}
 }
 /* .copyrights{
 	position:absolute;

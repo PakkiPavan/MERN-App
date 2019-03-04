@@ -150,6 +150,11 @@ app.get('/login',function(req,res){
 	else
 		res.send('Login to access this page')
 })
+
+app.get('/*',function(req,res){
+	res.sendFile(path.join(__dirname,'client/public/index.html'));
+})
+
 app.get('/session',function(req,res){
 		res.send(req.session.uname);
 })

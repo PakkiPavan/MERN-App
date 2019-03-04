@@ -130,7 +130,7 @@ class MM1 extends React.Component
 				//window.location="http://localhost:3000/";
 				//window.location="https://mastermind-board-game.herokuapp.com";
 				//window.location="https://mastermind-game.netlify.com/";
-				window.location="/MMHome";
+				//window.location="/MMHome";
 			}
 
 			else
