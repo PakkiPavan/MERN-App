@@ -141,12 +141,12 @@ body{
 		top:1060px;
 	}
 }
-/* @media(max-width:575px) {
-	.copyrights{
-		top:730px;
+@media(max-width:575px) {
+	.footer{
+		top:1400px;
 	}
 }
-@media(max-width:303px) {
+/*@media(max-width:303px) {
 	.copyrights{
 		top:800px;
 	}
