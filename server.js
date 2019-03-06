@@ -108,29 +108,30 @@ app.post('/register',function(req,res){
 app.post('/login',function(req,res){
 	//console.log(req.body)
 	//console.log(req.session.uname)
-	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-	sess=req.session;
-	sess.uname=req.body.uname;
-	console.log("Username: "+sess.uname)
-	if(!sess.uname)
-	{
-		res.send("Login to access this page")
-	}
+	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+	//console.log("sess in login");
+	//console.log(sess);
+
+	// if(!sess)
+	// {
+	// 	res.send("Login to access this page")
+	// }
+	console.log("BODY");
+	console.log(req.body);
 	mongoose.connect(url,function(err,db){
 		if(err)
 			throw err;
 		db.collection('userData').find({uname:req.body.uname,password:req.body.password}).toArray(function(er,docs){
 			if(err)
 				throw err;
-				// if(docs.length>0)
-				// {
-				// 	sess=req.session;
-				// 	sess.uname=req.body.uname;
-				// 	console.log(req.session.uname)
-				// 	console.log(docs.length)
-				//
-				// }
-				// else
+				if(docs.length>0)
+				{
+					sess=req.session;
+					sess.uname=req.body.uname;
+					console.log(req.session.uname)
+					console.log(docs.length)
+				}
+				//else
 				// {
 				// 	res.send("fail")
 				//
@@ -143,39 +144,50 @@ app.post('/login',function(req,res){
 	})
 	//res.send("pass")
 })
-app.get('/login',function(req,res){
-	//console.log(sess)
-	if(sess)
-		res.send("Logged in")
-	else
-		res.send('Login to access this page')
-})
+// app.get('/login',function(req,res){
+// 	//console.log(sess)
+// 	if(sess)
+// 		res.send("Logged in")
+// 	else
+// 		res.send('Login to access this page')
+// })
 
-app.get('/register',function(req,res){
-	res.send("Access denied. Login to access this page");
-})
+// app.get('/register',function(req,res){
+// 	res.send("Access denied. Login to access this page");
+// })
 
 app.get('/session',function(req,res){
-		res.send(req.session.uname);
+
+		if(sess)
+		{
+			console.log("sess in session");
+			console.log(sess);
+			res.send(sess.uname);
+		}
+		else {
+			res.send("");
+		}
 })
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 app.get('/logout',function(req,res){
 	console.log('logout')
 	console.log(req.session)
-	req.session.destroy(function(err){
-		if(err)
-		{
-			console.log(err)
-			res.send("fail")
-		}
-		else
-		{
-			console.log('logout else')
-			console.log(req.session)
-			res.send("pass")
-		}
-
-	})
+	req.session.destroy();
+	sess=null;
+	res.send("pass")
+	// req.session.destroy(function(err){
+	// 	if(err)
+	// 	{
+	// 		console.log(err)
+	// 		res.send("fail")
+	// 	}
+	// 	else
+	// 	{
+	// 		console.log('logout else')
+	// 		console.log(req.session)
+	// 		res.send("pass")
+	// 	}
+	// })
 })
 
 // app.get('/home',function(req,res){

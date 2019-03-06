@@ -3,21 +3,36 @@ import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import Dashboard from './Dashboard';
+import {mapStateToProps,mapDispatchToProps} from './MMStore';
+import {connect} from 'react-redux';
+import {store} from './index';
 
 class Login extends React.Component
 {
   constructor(props)
   {
     super(props);
-    this.state={pass:false,uname:''}
+    //this.state={pass:false,uname:''}
   }
   componentDidMount()
   {
+    console.log("Current uname in LOGIN is ",store.getState().uname);
+    // store.subscribe(()=>{
+    // 	console.log("Current state in LOGIN is",store.getState().color)
+    // })
+
+    console.log("Login");
     axios.get('/session')
     .then(res=>{
         console.log(res.data);
         if(res.data!=="")
-          this.setState({pass:true,uname:res.data})
+        {
+          //this.setState({pass:true,uname:res.data})
+          this.props.unamePass(res.data)
+        }
+        else {
+          this.props.unamePass("")
+        }
     })
     .catch(err=>alert("Something went wrong"))
   }
@@ -35,7 +50,9 @@ class Login extends React.Component
         console.log(res.data);
         if(res.data.length>0)
         {
-          this.setState({pass:!this.state.pass,uname:res.data[0].uname})
+          //this.setState({pass:!this.state.pass,uname:res.data[0].uname})
+          //this.props.unameCheck(res.data[0].uname)
+          this.props.setUname(res.data[0].uname);
         }
         else
         {
@@ -78,15 +95,15 @@ class Login extends React.Component
 	}
   render()
   {
-    var self=this;
+    //var self=this;
     $(document).ready(function(){
-      console.log("pass is",self.state.pass);
       $('input').focus(function(){
         $('#fail').hide();
       })
     })
-    if(!this.state.pass)
+    if(store.getState().uname==='')
     {
+      //console.log("logout after logout "+this.props.logout);
       return(
         <div className="container">
           <div className="mainHeader">
@@ -125,11 +142,11 @@ class Login extends React.Component
     {
       return(
         <div>
-          <Dashboard uname={this.state.uname}/>
+          <Dashboard/>
         </div>
       );
     }
   }
 }
 
-export default Login;
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

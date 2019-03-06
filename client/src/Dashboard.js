@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {mapStateToProps,mapDispatchToProps} from './MMStore';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import Login from './Login';
 import $ from 'jquery';
+import {store} from './index';
+
 
 class Dashboard extends React.Component
 {
@@ -11,13 +15,27 @@ class Dashboard extends React.Component
     super(props);
     this.state={logout:false}
   }
+  componentDidMount()
+  {
+    console.log("Dashboard");
+    //console.log(this.props.logout);
+    console.log(this.props.uname);
+
+  }
   logout()
   {
     axios.get('/logout')
     .then(res=>{
         console.log(res);
         if(res.data==="pass")
-          this.setState({logout:!this.state.logout})
+        {
+          //this.setState({logout:!this.state.logout})
+          //this.props.logoutCheck();
+          //this.props.unameCheck('');
+          this.props.setUname("");
+
+        }
+        console.log("uname after logout "+store.getState().uname);
     })
     .catch(err=>alert("Something went wrong"))
   }
@@ -27,7 +45,7 @@ class Dashboard extends React.Component
   }
 
   render(){
-    if(!this.state.logout)
+    if(store.getState().uname!=='')
     {
       return(
         <div>
@@ -44,7 +62,6 @@ class Dashboard extends React.Component
           <div className="content">
             <h1></h1>
           </div>
-
 
           <div className="footer">
             <p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
@@ -63,4 +80,4 @@ class Dashboard extends React.Component
   }
 }
 
-export default Dashboard;
+export default connect(mapStateToProps,mapDispatchToProps)(Dashboard);

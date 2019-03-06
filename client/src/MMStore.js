@@ -11,13 +11,16 @@ export function mapStateToProps(state)
 		colors:state.colors,
 		code:state.code,
 		flag:state.flag,
-		question:state.question
-
+		question:state.question,
+		pass:state.pass,
+    uname:state.uname,
+    logout:state.logout
 	}
 }
 export function mapDispatchToProps(dispatch)
 {
 	return{
+//Mastermind dispatch start
 		currentColor:(e)=>{
 			dispatch({type:"currentColor",value:e.target.value});
 			//console.log(document.getElementById(e.target.id))
@@ -66,6 +69,22 @@ export function mapDispatchToProps(dispatch)
 		},
 		initialState:()=>{
 			dispatch({type:"initialState"})
+		},
+//Mastermind dispatch ends
+		setUname:(uname)=>{
+			dispatch({type:"setUname",uname:uname})
+		},
+		unameCheck:(uname)=>{
+			dispatch({type:"unameCheck",uname:uname})
+		},
+		unamePass:(uname)=>{
+			dispatch({type:"unamePass",uname:uname})
+		},
+		logoutCheck:()=>{
+			console.log("dispatch logout");
+			dispatch({type:"logoutCheck"})
 		}
+
+
 	}
 }

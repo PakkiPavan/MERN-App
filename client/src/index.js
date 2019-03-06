@@ -13,7 +13,8 @@ import MMHome from './MMHome';
 import MMReducer from './MMReducer';
 import {BrowserRouter,Route} from 'react-router-dom';
 import Rules from './Rules';
-const store=createStore(MMReducer);
+
+export const store=createStore(MMReducer);
 
 //import * as serviceWorker from './serviceWorker';
 /*import {createStore} from 'redux';
@@ -25,12 +26,12 @@ import LikeReducer from './LikeReducer';*/
 ReactDOM.render(
 	<BrowserRouter>
 		<div>
-			<Route exact path="/" component={Home}/>
-			<Route path="/register" component={Registration}/>
-			<Route path="/login" component={Login}/>
-			<Route path="/like" component={App}/>
-			<Route path="/mastermind" component={Masterminds}/>
 			<Provider store={store}>
+				<Route exact path="/" component={Home}/>
+				<Route path="/register" component={Registration}/>
+				<Route path="/login" component={Login}/>
+				<Route path="/like" component={App}/>
+				<Route path="/mastermind" component={Masterminds}/>
 				<Route path="/MMHome" component={MMHome}/>
 				<Route path="/rules" component={Rules}/>
 				<Route path="/play" component={MM1}/>
@@ -38,6 +39,11 @@ ReactDOM.render(
 		</div>
 	</BrowserRouter>,
 	document.getElementById('root'));
+
+
+store.subscribe(()=>{
+	console.log("Current state is",store.getState())
+})
 
 /*
 ReactDOM.render(
