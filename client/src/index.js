@@ -11,7 +11,7 @@ import {Provider} from 'react-redux';
 import MM1 from './MM1';
 import MMHome from './MMHome';
 import MMReducer from './MMReducer';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Route,HashRouter} from 'react-router-dom';
 import Rules from './Rules';
 
 export const store=createStore(MMReducer);
@@ -24,7 +24,7 @@ import LikeReducer from './LikeReducer';*/
 //const store=createStore(LikeReducer);
 
 ReactDOM.render(
-	<BrowserRouter>
+	<HashRouter>
 		<div>
 			<Provider store={store}>
 				<Route exact path="/" component={Home}/>
@@ -37,7 +37,7 @@ ReactDOM.render(
 				<Route path="/play" component={MM1}/>
 			</Provider>
 		</div>
-	</BrowserRouter>,
+	</HashRouter>,
 	document.getElementById('root'));
 
 
