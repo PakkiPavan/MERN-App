@@ -60,7 +60,7 @@ class Registration extends React.Component
 				{
 					$('#match').hide();
 					$('#format').hide();
-					axios.post('/register',{uname:uname,email:email,password:password})
+					axios.post('/serverRegister',{uname:uname,email:email,password:password})
 					.then(res=>{
 						console.log(res);
 						$('#form').get(0).reset();

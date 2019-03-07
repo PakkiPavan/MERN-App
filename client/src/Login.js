@@ -45,7 +45,7 @@ class Login extends React.Component
       alert("All fields are mandatory");
     else
     {
-      axios.post('/login',{uname:uname,password:password})
+      axios.post('/serverLogin',{uname:uname,password:password})
       .then(res=>{
         console.log(res.data);
         if(res.data.length>0)

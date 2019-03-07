@@ -62,7 +62,7 @@ if(process.env.NODE_ENV==='production')
 		})
 
 	})
-	app.get("/login",function(req,res){
+	app.get("/serverLogin",function(req,res){
 		if(sess)
 		{
 			res.send(sess.uname);
@@ -91,7 +91,7 @@ if(process.env.NODE_ENV==='production')
 }
 //production mode ends
 
-app.post('/register',function(req,res){
+app.post('/serverRegister',function(req,res){
 	console.log(req.body)
 	mongoose.connect(url,function(err,db){
 		if(err)
@@ -113,7 +113,7 @@ app.post('/register',function(req,res){
 	})*/
 
 })
-app.get("/login",function(req,res){
+app.get("/serverLogin",function(req,res){
 	if(sess)
 	{
 		res.send(sess.uname);
@@ -122,7 +122,7 @@ app.get("/login",function(req,res){
 		res.send("");
 	}
 })
-app.post('/login',function(req,res){
+app.post('/serverLogin',function(req,res){
 	//console.log(req.body)
 	//console.log(req.session.uname)
 	//res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -199,7 +199,7 @@ app.get('/session',function(req,res){
 // 	}
 // }
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-app.get('/logout',function(req,res){
+app.get('/serverLogout',function(req,res){
 	console.log('logout')
 	req.session.destroy();
 	sess=null;

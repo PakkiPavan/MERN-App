@@ -24,7 +24,7 @@ class Dashboard extends React.Component
   }
   logout()
   {
-    axios.get('/logout')
+    axios.get('/serverLogout')
     .then(res=>{
         console.log(res);
         if(res.data==="pass")
