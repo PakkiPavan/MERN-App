@@ -62,8 +62,14 @@ if(process.env.NODE_ENV==='production')
 		})
 
 	})
-	app.get("*",function(req,res){
-		res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+	app.get("/login",function(req,res){
+		if(sess)
+		{
+			res.send(sess.uname);
+		}
+		else {
+			res.send("");
+		}
 	})
 	app.post("/inc",function(req,res){
 		var count;
@@ -106,6 +112,15 @@ app.post('/register',function(req,res){
 		res.status(400).send("not stored")
 	})*/
 
+})
+app.get("/login",function(req,res){
+	if(sess)
+	{
+		res.send(sess.uname);
+	}
+	else {
+		res.send("");
+	}
 })
 app.post('/login',function(req,res){
 	//console.log(req.body)

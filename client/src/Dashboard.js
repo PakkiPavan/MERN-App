@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import Login from './Login';
+//import Login from './Login';
 import $ from 'jquery';
-import {store} from './index';
+//import {store} from './index';
 
 
 class Dashboard extends React.Component
@@ -58,7 +58,6 @@ class Dashboard extends React.Component
             </div>
           </div>
           <div className="content">
-            <h1></h1>
           </div>
 
           <div className="footer">

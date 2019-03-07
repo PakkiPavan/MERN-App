@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import './App.css';
 import $ from 'jquery';
 import '../node_modules/font-awesome/css/font-awesome.css'
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import axios from 'axios';
 /*import {mapStateToProps,mapDispatchToProps} from './LikeStore';
 import {connect} from 'react-redux';*/
