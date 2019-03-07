@@ -9,6 +9,12 @@ class Home extends React.Component
 		super(props)
 		this.state={}
 	}
+	componentDidMount()
+	{
+		document.body.scrollTop=0;
+		document.documentElement.scrollTop=0;
+
+	}
 	nav()
 	{
 		$('.nav').toggle(400);

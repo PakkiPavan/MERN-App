@@ -10,6 +10,9 @@ class MM1 extends React.Component
 {
 	componentWillMount()
 	{
+		document.body.scrollTop=0;
+		document.documentElement.scrollTop=0;
+
 		this.props.initialState();
 		var u=[]
 		while(u.length<4)

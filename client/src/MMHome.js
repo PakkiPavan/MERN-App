@@ -5,6 +5,11 @@ import $ from 'jquery';
 
 class MMHome extends React.Component
 {
+	componentDidMount()
+	{
+		document.body.scrollTop=0;
+		document.documentElement.scrollTop=0;
+	}
 	nav()
 	{
 		$('.nav').toggle(400);

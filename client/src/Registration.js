@@ -12,7 +12,8 @@ class Registration extends React.Component
 	}
 	componentDidMount()
 	{
-
+		document.body.scrollTop=0;
+    document.documentElement.scrollTop=0;
 	}
 	emailValidation()
 	{

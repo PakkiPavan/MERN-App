@@ -30,6 +30,12 @@ You have ten chances to guess the correct code, if you exhaust all of them witho
 
 class Rules extends React.Component
 {
+	componentDidMount()
+	{
+		document.body.scrollTop=0;
+		document.documentElement.scrollTop=0;
+
+	}
 	nav()
 	{
 		$('.nav').toggle(400);

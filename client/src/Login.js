@@ -12,15 +12,18 @@ class Login extends React.Component
   constructor(props)
   {
     super(props);
-    //this.state={pass:false,uname:''}
+    this.state={count:-1}
   }
   componentDidMount()
   {
+    document.body.scrollTop=0;
+    document.documentElement.scrollTop=0;
+
     console.log("Current uname in LOGIN is ",store.getState().uname);
     // store.subscribe(()=>{
     // 	console.log("Current state in LOGIN is",store.getState().color)
     // })
-
+    this.setState({count:-1})
     console.log("Login");
     axios.get('/session')
     .then(res=>{
@@ -28,9 +31,12 @@ class Login extends React.Component
         if(res.data!=="")
         {
           //this.setState({pass:true,uname:res.data})
+          this.setState({count:0})
           this.props.unamePass(res.data)
         }
-        else {
+        else
+        {
+          this.setState({count:0})
           this.props.unamePass("")
         }
     })
@@ -93,6 +99,12 @@ class Login extends React.Component
 	{
 		$('.nav').toggle(400);
 	}
+  // scroll()
+  // {
+  //   //console.log(document.body.scrollTop);
+  //   //console.log(document.documentElement.scrollTop);
+  //   document.documentElement.scrollTop=0;
+  // }
   render()
   {
     //var self=this;
@@ -101,11 +113,13 @@ class Login extends React.Component
         $('#fail').hide();
       })
     })
-    if(store.getState().uname==='')
+
+    if(store.getState().uname===''&&this.state.count!==-1)
     {
       //console.log("logout after logout "+this.props.logout);
       return(
-        <div className="container">
+        <div className="container" id="container">
+          <h1 id="#top">Hello</h1>
           <div className="mainHeader">
             <div className="pavanLogo" onClick={this.nav.bind(this)}>
               <span className="pp">PP</span>
@@ -115,7 +129,7 @@ class Login extends React.Component
               <Link to="/register"><button className="btn">SignUp</button></Link>
             </div>
           </div>
-              <div className="box login">
+              <div className="box login" id="loginBox">
                 <h1>Login</h1>
                   <form id="form" autoComplete="off">
                     <div className="inputBox">
@@ -132,19 +146,27 @@ class Login extends React.Component
                     </div>
                   </form>
               </div>
-              <div className="footer">
+              <div className="footer" id="#footer">
         				<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
         			</div>
         </div>
       );
     }
-    else
+    else if(store.getState().uname!==''&&this.state.count!==-1)
     {
       return(
         <div>
           <Dashboard/>
         </div>
       );
+    }
+    else
+    {
+      return(
+        <div className="load">
+          Loading...
+        </div>
+      )
     }
   }
 }
