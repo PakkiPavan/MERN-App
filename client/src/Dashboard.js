@@ -35,7 +35,7 @@ class Dashboard extends React.Component
           this.props.setUname("");
 
         }
-        console.log("uname after logout "+store.getState().uname);
+        //console.log("uname after logout "+store.getState().uname);
     })
     .catch(err=>alert("Something went wrong"))
   }
@@ -45,8 +45,6 @@ class Dashboard extends React.Component
   }
 
   render(){
-    if(store.getState().uname!=='')
-    {
       return(
         <div>
           <div className="mainHeader">
@@ -69,13 +67,7 @@ class Dashboard extends React.Component
 
         </div>
       );
-    }
-    else
-    {
-      return(
-        <Login/>
-      );
-    }
+
 
   }
 }

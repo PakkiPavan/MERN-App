@@ -62,7 +62,9 @@ if(process.env.NODE_ENV==='production')
 		})
 
 	})
-
+	app.get("*",function(req,res){
+		res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+	})
 	app.post("/inc",function(req,res){
 		var count;
 		mongoose.connect(url,function(err,db){
@@ -168,12 +170,25 @@ app.get('/session',function(req,res){
 			res.send("");
 		}
 })
+
+// app.get('/login')
+// {
+// 	if(sess)
+// 	{
+// 		console.log("GET LOGIN");
+// 		res.send(sess.uname);
+// 	}
+// 	else
+// 	{
+// 		res.send("");
+// 	}
+// }
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 app.get('/logout',function(req,res){
 	console.log('logout')
-	console.log(req.session)
 	req.session.destroy();
 	sess=null;
+	console.log(req.session)
 	res.send("pass")
 	// req.session.destroy(function(err){
 	// 	if(err)
