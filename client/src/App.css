@@ -266,7 +266,7 @@ p{
 	cursor:pointer;
 }
 
-.load{
+/* .load{
 	position:absolute;
 	border:5px solid silver;
 	top:50%;
@@ -302,7 +302,7 @@ p{
 	{
 		transform:rotate(360deg);
 	}
-}
+} */
 .footer{
 	background-color: darkmagenta;
 	position:absolute;
@@ -328,7 +328,13 @@ p{
 	font-size: 22px;
 	color:white;
 }
-@media(max-width:888px){
+.error{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+@media(max-width:1025px){
 	.mainHeader{
 		position:fixed;
 		height:66px;

@@ -50,7 +50,7 @@ class Rules extends React.Component
 					</div>
 					<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
 					<div className="nav">
-						<Link to="/MMHome"><button className="btn">Home</button></Link>
+						<Link to="/mastermind"><button className="btn">Home</button></Link>
 						<Link to="/play"><button className="btn">Play game</button></Link>
 					</div>
 				</div>

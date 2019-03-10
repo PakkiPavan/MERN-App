@@ -14,7 +14,8 @@ export function mapStateToProps(state)
 		question:state.question,
 		pass:state.pass,
     uname:state.uname,
-    logout:state.logout
+    logout:state.logout,
+		usersCount:state.usersCount
 	}
 }
 export function mapDispatchToProps(dispatch)
@@ -74,14 +75,16 @@ export function mapDispatchToProps(dispatch)
 		setUname:(uname)=>{
 			dispatch({type:"setUname",uname:uname})
 		},
-		unameCheck:(uname)=>{
-			dispatch({type:"unameCheck",uname:uname})
-		},
 		unamePass:(uname)=>{
 			dispatch({type:"unamePass",uname:uname})
 		},
+		setUsersCount:(count)=>{
+			dispatch({type:"setUsersCount",count:count})
+		},
+		unameCheck:(uname)=>{
+			dispatch({type:"unameCheck",uname:uname})
+		},
 		logoutCheck:()=>{
-			console.log("dispatch logout");
 			dispatch({type:"logoutCheck"})
 		}
 

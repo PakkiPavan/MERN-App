@@ -53,7 +53,7 @@ class Dashboard extends React.Component
             </div>
             <span className="profile">Welcome {this.props.uname}</span>
             <div className="nav">
-              <Link to="/MMHome"><button className="btn">Mastermind</button></Link>
+              <Link to="/mastermind"><button className="btn">Mastermind</button></Link>
               <button className="btn" onClick={this.logout.bind(this)}>Logout</button>
             </div>
           </div>

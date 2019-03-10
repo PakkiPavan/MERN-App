@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
-var sess;
+var sess=null;
 mongoose.connect(url,function(err){
 	if(err)
 		throw err;
@@ -62,15 +62,15 @@ if(process.env.NODE_ENV==='production')
 		})
 
 	})
-	app.get("/serverLogin",function(req,res){
-		if(sess)
-		{
-			res.send(sess.uname);
-		}
-		else {
-			res.send("");
-		}
-	})
+	// app.get("/serverLogin",function(req,res){
+	// 	if(sess)
+	// 	{
+	// 		res.send(sess.uname);
+	// 	}
+	// 	else {
+	// 		res.send("");
+	// 	}
+	// })
 	app.post("/inc",function(req,res){
 		var count;
 		mongoose.connect(url,function(err,db){
@@ -113,14 +113,17 @@ app.post('/serverRegister',function(req,res){
 	})*/
 
 })
-app.get("/serverLogin",function(req,res){
-	if(sess)
-	{
-		res.send(sess.uname);
-	}
-	else {
-		res.send("");
-	}
+app.get("/countUsers",function(req,res){
+	mongoose.connect(url,function(err,db){
+		if(err)
+			throw err;
+		db.collection('userData').find().count()
+		.then(function(count){
+			console.log("Number of users registered="+count);
+			res.send({usersCount:count})
+			db.close();
+		})
+	})
 })
 app.post('/serverLogin',function(req,res){
 	//console.log(req.body)
@@ -174,7 +177,7 @@ app.post('/serverLogin',function(req,res){
 // })
 
 app.get('/session',function(req,res){
-
+		console.log("SERVER SESSION");
 		if(sess)
 		{
 			console.log("sess in session");
@@ -186,18 +189,7 @@ app.get('/session',function(req,res){
 		}
 })
 
-// app.get('/login')
-// {
-// 	if(sess)
-// 	{
-// 		console.log("GET LOGIN");
-// 		res.send(sess.uname);
-// 	}
-// 	else
-// 	{
-// 		res.send("");
-// 	}
-// }
+
 //	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 app.get('/serverLogout',function(req,res){
 	console.log('logout')

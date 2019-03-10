@@ -5,14 +5,16 @@ import App from './App';
 import Home from './Home';
 import Registration from './Registration';
 import Login from './Login';
-import Masterminds from './Masterminds';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import MM1 from './MM1';
 import MMHome from './MMHome';
 import MMReducer from './MMReducer';
-import {BrowserRouter,Route,HashRouter} from 'react-router-dom';
+import NotFound from './NotFound';
+import {HashRouter,Route,Switch} from 'react-router-dom';
+//import {BrowserRouter,HashRouter,Route,Switch} from 'react-router-dom';
 import Rules from './Rules';
+//import createHistory from 'history/createBrowserHistory'
 
 export const store=createStore(MMReducer);
 
@@ -27,14 +29,16 @@ ReactDOM.render(
 	<HashRouter>
 		<div>
 			<Provider store={store}>
-				<Route exact path="/" component={Home}/>
-				<Route path="/register" component={Registration}/>
-				<Route path="/login" component={Login}/>
-				<Route path="/like" component={App}/>
-				<Route path="/mastermind" component={Masterminds}/>
-				<Route path="/MMHome" component={MMHome}/>
-				<Route path="/rules" component={Rules}/>
-				<Route path="/play" component={MM1}/>
+				<Switch>
+					<Route exact path="/" component={Home}/>
+					<Route path="/register" component={Registration}/>
+					<Route path="/login" component={Login}/>
+					<Route path="/like" component={App}/>
+					<Route path="/mastermind" component={MMHome}/>
+					<Route path="/rules" component={Rules}/>
+					<Route path="/play" component={MM1}/>
+					<Route path="/*" component={NotFound}/>
+				</Switch>
 			</Provider>
 		</div>
 	</HashRouter>,

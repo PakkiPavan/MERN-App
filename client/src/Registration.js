@@ -154,8 +154,6 @@ class Registration extends React.Component
 							</div>
 				</div>
 			)
-
-
 	}
 }
 

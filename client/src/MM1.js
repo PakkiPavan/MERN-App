@@ -184,7 +184,7 @@ class MM1 extends React.Component
 					</div>
 					<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
 					<div className="nav">
-						<Link to="/"><button className="btn">Home</button></Link>
+						<Link to="/mastermind"><button className="btn">Home</button></Link>
 						<Link to="/rules"><button className="btn">How to Play</button></Link>
 					</div>
 				</div>

@@ -6,6 +6,45 @@ import Dashboard from './Dashboard';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
+import styled,{keyframes} from 'styled-components';
+
+var load=keyframes`
+	0%
+	{
+		transform:rotate(0deg);
+	}
+	100%
+	{
+		transform:rotate(360deg);
+	}
+`;
+
+var Loading=styled.div`
+	position:absolute;
+	border:5px solid silver;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	text-align:center;
+	line-height:150px;
+	font-size:20px;
+	text-transform:uppercase;
+	&:before{
+		content:'';
+		position:absolute;
+		top:-5px;
+		left:-5px;
+		width:100%;
+		height:100%;
+		border:5px solid transparent;
+		border-top:5px solid black;
+		border-radius:50%;
+		animation:${load} 1.5s infinite;
+	}
+`;
 
 class Login extends React.Component
 {
@@ -19,6 +58,7 @@ class Login extends React.Component
     document.body.scrollTop=0;
     document.documentElement.scrollTop=0;
 
+    console.log(this.props.history);
     console.log("Current uname in LOGIN is ",store.getState().uname);
     // store.subscribe(()=>{
     // 	console.log("Current state in LOGIN is",store.getState().color)
@@ -109,6 +149,8 @@ class Login extends React.Component
   {
     //var self=this;
     $(document).ready(function(){
+      document.body.scrollTop=0;
+      document.documentElement.scrollTop=0;
       $('input').focus(function(){
         $('#fail').hide();
       })
@@ -163,9 +205,11 @@ class Login extends React.Component
     else
     {
       return(
-        <div className="load">
-          Loading...
-        </div>
+        <Loading>
+          <div className="load">
+            Loading...
+          </div>
+        </Loading>
       )
     }
   }

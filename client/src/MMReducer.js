@@ -11,7 +11,8 @@ const initialState={
 	question:'?',
 	pass:false,
   uname:'',
-  logout:false
+  logout:false,
+	usersCount:0
 }
 function MMReducer(state=initialState,action)
 {
@@ -77,7 +78,10 @@ function MMReducer(state=initialState,action)
       return{
         ...state,logout:!state.logout
       }
-
+		case "setUsersCount":
+				return{
+					...state,usersCount:action.count
+				}
 		default:
 			return state;
 	}
