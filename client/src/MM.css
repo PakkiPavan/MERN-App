@@ -15,7 +15,7 @@
 	outline:none;
 	cursor:pointer;
 }
-.green,.red,.yellow,.blue,.pink,.skyblue,.black{
+.green,.red,.yellow,.blue,.maroon,.deeppink,.black{
 	width:35px;
 	height:35px;
 	border-radius:50%;
@@ -41,11 +41,11 @@
 .blue{
 	background-color:blue;
 }
-.pink{
-	background-color:pink;
+.maroon{
+	background-color:maroon;
 }
-.skyblue{
-	background-color:skyblue;
+.deeppink{
+	background-color:deeppink;
 }
 .black{
 	background-color:black;

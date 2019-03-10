@@ -5,7 +5,7 @@ const initialState={
 	index:2,
 	row:1,
 	enable:true,
-	colors:{0:'green',1:'red',2:'yellow',3:'blue',4:'pink',5:'skyblue',6:'black'},
+	colors:{0:'green',1:'red',2:'yellow',3:'blue',4:'maroon',5:'deeppink',6:'black'},
 	code:[],
 	flag:true,
 	question:'?',

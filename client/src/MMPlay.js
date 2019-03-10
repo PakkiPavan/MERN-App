@@ -214,7 +214,7 @@ class MMPlay extends React.Component
 				//window.location="http://localhost:3000/";
 				//window.location="https://mastermind-board-game.herokuapp.com";
 				//window.location="https://mastermind-game.netlify.com/";
-				window.location="/mastermind";
+				window.location="/#/mastermind";
 			}
 
 			else
@@ -275,8 +275,8 @@ class MMPlay extends React.Component
 							<button className="red" id="red" value="red" onClick={this.props.currentColor}></button>
 							<button className="yellow" id="yellow" value="yellow" onClick={this.props.currentColor}></button>
 							<button className="blue" id="blue" value="blue" onClick={this.props.currentColor}></button>
-							<button className="pink" id="pink" value="pink" onClick={this.props.currentColor}></button>
-							<button className="skyblue" id="skyblue" value="skyblue" onClick={this.props.currentColor}></button>
+							<button className="maroon" id="maroon" value="maroon" onClick={this.props.currentColor}></button>
+							<button className="deeppink" id="deeppink" value="deeppink" onClick={this.props.currentColor}></button>
 							<button className="black" id="black" value="black" onClick={this.props.currentColor}></button>
 						</div>
 						<div className="">

@@ -36,9 +36,9 @@ export function mapDispatchToProps(dispatch)
 				else if(i===3)
 					document.getElementById("blue").style.animation="blink 0s infinite"
 				else if(i===4)
-					document.getElementById("pink").style.animation="blink 0s infinite"
+					document.getElementById("maroon").style.animation="blink 0s infinite"
 				else if(i===5)
-					document.getElementById("skyblue").style.animation="blink 0s infinite"
+					document.getElementById("deeppink").style.animation="blink 0s infinite"
 				else if(i===6)
 					document.getElementById("black").style.animation="blink 0s infinite"
 			}
