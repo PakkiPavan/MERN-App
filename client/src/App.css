@@ -171,6 +171,9 @@ h1
 	/* color:white; */
 	text-align:center;
 }
+.hContent{
+	width:max-content;
+}
 .inputBox{
 	position:relative;
 }
@@ -337,13 +340,13 @@ p{
 @media(max-width:1025px){
 	.mainHeader{
 		position:fixed;
-		height:66px;
+		height:80px;
 		top:0;
 	}
 	.nav
 	{
 		margin-left:0;
-		top:65px;
+		top:80px;
 		left:0;
 		display:none;
 		height:400px;
@@ -358,7 +361,7 @@ p{
 		font-size: 40px;
 	}
 	.profile{
-		top:20px;
+		top:50px;
 	}
 
 }

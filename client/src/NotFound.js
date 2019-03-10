@@ -28,7 +28,7 @@ class NotFound extends React.Component
 						</div>
 					</div>
 					<div className="error">
-						<h1>Not Found</h1>
+						<h3 className="hContent">The page you are looking is Not Found</h3>
 					</div>
 					<div className="footer">
 						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>

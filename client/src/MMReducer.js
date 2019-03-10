@@ -66,22 +66,22 @@ function MMReducer(state=initialState,action)
 			return{
 				...state,uname:action.uname
 			}
-		case "unameCheck":
-      return{
-        ...state,pass:!state.pass,uname:action.uname
-      }
     case "unamePass":
       return{
         ...state,pass:true,uname:action.uname
       }
+		case "setUsersCount":
+			return{
+				...state,usersCount:action.count
+			}
     case "logoutCheck":
       return{
         ...state,logout:!state.logout
       }
-		case "setUsersCount":
-				return{
-					...state,usersCount:action.count
-				}
+		case "setLogout":
+			return{
+				...state,logout:false
+			}
 		default:
 			return state;
 	}

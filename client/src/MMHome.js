@@ -60,52 +60,28 @@ class MMHome extends React.Component
 	{
 		document.body.scrollTop=0;
 		document.documentElement.scrollTop=0;
-		this.setState({count:-1})
 		// fetch("/login.json")
 		// .then(res=>res.json())
 		// .then(data=>console.log(data))
 		// .catch(err=>console.log("Something went wrong"))
-
+		this.props.setLogout();
+		this.setState({count:-1})
 		axios.get('/session')
     .then(res=>{
 				console.log("axios session");
-        console.log(res.data);
+        console.log(res);
         if(res.data!=="")
         {
-					//this.props.setCount()
 					this.setState({count:0})
           this.props.unamePass(res.data)
         }
         else
         {
-					//this.props.setCount()
 					this.setState({count:0})
           this.props.unamePass("")
         }
     })
     .catch(err=>alert("Something went wrong"))
-		// console.log("store uname in mount is "+store.getState().uname);
-	}
-	componentWillUpdate()
-	{
-		
-		console.log("WILL UPDATE");
-		axios.get('/session')
-		.then(res=>{
-				console.log("axios session");
-				console.log(res.data);
-				if(res.data!=="")
-				{
-					//this.props.setCount()
-					this.props.unamePass(res.data)
-				}
-				else
-				{
-					//this.props.setCount()
-					this.props.unamePass("")
-				}
-		})
-		.catch(err=>alert("Something went wrong"))
 	}
 	logout()
   {
@@ -116,7 +92,6 @@ class MMHome extends React.Component
         if(res.data==="pass")
         {
           this.props.setUname("");
-					return <Redirect to="/" />
         }
     })
     .catch(err=>alert("Something went wrong"))
@@ -139,6 +114,7 @@ class MMHome extends React.Component
 							<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
 							<span className="profile">Welcome {this.props.uname}</span>
 							<div className="nav">
+								<Link to="/login"><button className="btn">Home</button></Link>
 								<Link to="/play"><button className="btn">Play game</button></Link>
 								<Link to="/rules"><button className="btn">How to Play</button></Link>
 								<button className="btn" onClick={this.logout.bind(this)}>Logout</button>

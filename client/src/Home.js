@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import styled,{keyframes} from 'styled-components';
+import axios from 'axios';
+import Dashboard from './Dashboard';
 
 var load=keyframes`
 	0%
@@ -55,7 +57,7 @@ class Home extends React.Component
 	{
 		document.body.scrollTop=0;
 		document.documentElement.scrollTop=0;
-
+// to count number of users registered
 		fetch('/countUsers')
 		.then(res=>res.json())
 		.then(data=>{
@@ -63,6 +65,23 @@ class Home extends React.Component
 			this.setState({count:0})
 		})
 		.catch(err=>alert("Something went wrong"))
+//for sesion
+		axios.get('/session')
+		.then(res=>{
+				console.log(res.data);
+				if(res.data!=="")
+				{
+					//this.setState({count:0})
+					this.props.unamePass(res.data)
+				}
+				else
+				{
+					//this.setState({count:0})
+					this.props.unamePass("")
+				}
+		})
+		.catch(err=>alert("Something went wrong"))
+
 	}
 	nav()
 	{
@@ -70,26 +89,32 @@ class Home extends React.Component
 	}
 	render()
 	{
-		if(this.state.count!==-1)
+		if(this.props.uname!=="")
 		{
 			return(
-			<div>
-				<div className="mainHeader">
-					<div className="pavanLogo" onClick={this.nav.bind(this)}>
-						<span className="pp">PP</span>
+				<Dashboard />
+			)
+		}
+		else if(this.state.count!==-1)
+		{
+			return(
+				<div>
+					<div className="mainHeader">
+						<div className="pavanLogo" onClick={this.nav.bind(this)}>
+							<span className="pp">PP</span>
+						</div>
+						<div className="nav">
+							<Link to="/register"><button className="btn">SignUp</button></Link>
+							<Link to="/login"><button className="btn">Login</button></Link>
+						</div>
 					</div>
-					<div className="nav">
-						<Link to="/register"><button className="btn">SignUp</button></Link>
-						<Link to="/login"><button className="btn">Login</button></Link>
+					<div className="error">
+						<h1 className="hContent">{this.props.usersCount} users registered</h1>
+					</div>
+					<div className="footer">
+						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
 					</div>
 				</div>
-				<div className="error">
-					<h1>{this.props.usersCount} users registered</h1>
-				</div>
-				<div className="footer">
-					<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
-				</div>
-			</div>
 			)
 		}
 		else

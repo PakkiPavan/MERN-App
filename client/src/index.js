@@ -7,7 +7,8 @@ import Registration from './Registration';
 import Login from './Login';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import MM1 from './MM1';
+//import MM1 from './MM1';
+import MMPlay from './MMPlay';
 import MMHome from './MMHome';
 import MMReducer from './MMReducer';
 import NotFound from './NotFound';
@@ -36,7 +37,7 @@ ReactDOM.render(
 					<Route path="/like" component={App}/>
 					<Route path="/mastermind" component={MMHome}/>
 					<Route path="/rules" component={Rules}/>
-					<Route path="/play" component={MM1}/>
+					<Route path="/play" component={MMPlay}/>
 					<Route path="/*" component={NotFound}/>
 				</Switch>
 			</Provider>

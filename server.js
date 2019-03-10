@@ -121,6 +121,7 @@ app.get("/countUsers",function(req,res){
 		.then(function(count){
 			console.log("Number of users registered="+count);
 			res.send({usersCount:count})
+			//res.send(count)
 			db.close();
 		})
 	})

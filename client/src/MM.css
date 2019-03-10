@@ -121,7 +121,7 @@ a{
 	font-family:-webkit-body;
 	float:left;
 	position:absolute;
-	left:50%;
+	left:30%;
 	top:20%;
 	transform:translate(-50%,-50%);
 	font-size:38px;
@@ -129,7 +129,7 @@ a{
 @media(max-width:888px){
 	.mastermindHeading{
 		top:25%;
-		left: 55%;
+		left: 50%;
 		font-size: 25px;
 	}
 }

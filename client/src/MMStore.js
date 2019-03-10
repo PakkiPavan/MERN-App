@@ -81,11 +81,11 @@ export function mapDispatchToProps(dispatch)
 		setUsersCount:(count)=>{
 			dispatch({type:"setUsersCount",count:count})
 		},
-		unameCheck:(uname)=>{
-			dispatch({type:"unameCheck",uname:uname})
-		},
 		logoutCheck:()=>{
 			dispatch({type:"logoutCheck"})
+		},
+		setLogout:()=>{
+			dispatch({type:"setLogout"})
 		}
 
 

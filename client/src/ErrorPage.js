@@ -28,8 +28,7 @@ class ErrorPage extends React.Component
 						</div>
 					</div>
 					<div className="error">
-						<h1>Access Denied</h1>
-						<h1>Login to access this page</h1>
+						<h3 className="hContent">Access Denied<br/><Link to="/login" style={{color:'blue'}}>Login</Link> to access this page</h3>
 					</div>
 					<div className="footer">
 						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
