@@ -190,9 +190,8 @@ h1
 	color:black;
 	font-size: 18px;
 }
-.box .inputBox label
+/* .box .inputBox label
 {
-	/* color:white; */
 	color:black;
 	position:absolute;
 	top:0;
@@ -208,11 +207,33 @@ h1
 	top:-28px;
 	left:0;
 	font-size:18px;
-	/* color:#8c8cb5; */
+	color:black;
+} */
+/*  */
+
+.box .inputBox label
+{
+	color:black;
+	position:absolute;
+	top:0;
+	left:4px;
+	pointer-events:none;
+	padding:10px 0;
+	font-size:18px;
+	transition:0.5s;
+}
+.inputBox input:focus ~ label,
+.inputBox input:valid ~ label
+{
+	background-color: white;
+	height:1px;
+	top:-17px;
+	left:8px;
+	font-size:15px;
 	color:black;
 }
 
-
+/*  */
 .btn{
 	padding:10px;
 	position:relative;
