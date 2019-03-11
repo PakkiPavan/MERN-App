@@ -31,10 +31,13 @@ app.use(
 	PUT	    Update
 	DELETE	Delete
 */
+// to make app online for every 20 minutes start
+/*
 setInterval(function(){
 	http.get('https://ancient-tundra-40322.herokuapp.com/')
 },20*60*1000) //every 20 minutes
-
+*/
+// to make app online for every 20 minutes end
 var userSchema=new mongoose.Schema({
 	fname:String,
 	email:String,
