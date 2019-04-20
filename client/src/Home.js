@@ -6,6 +6,36 @@ import $ from 'jquery';
 import styled,{keyframes} from 'styled-components';
 import axios from 'axios';
 import Dashboard from './Dashboard';
+import Footer from './Footer';
+import '../node_modules/font-awesome/css/font-awesome.css';
+
+const Hamburger=styled.i`
+	width:0px;
+	outline:none;
+	border:none;
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(max-width:975px){
+		display:block;
+	}
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
+const Close=styled.i`
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
+
 
 var load=keyframes`
 	0%
@@ -65,7 +95,7 @@ class Home extends React.Component
 			this.setState({count:0})
 		})
 		.catch(err=>alert("Something went wrong"))
-//for sesion
+//for session
 		axios.get('/session')
 		.then(res=>{
 				console.log(res.data);
@@ -83,10 +113,25 @@ class Home extends React.Component
 		.catch(err=>alert("Something went wrong"))
 
 	}
-	nav()
+	nav(e)
 	{
-		$('.nav').toggle(400);
+		var elem=document.getElementsByClassName('fa fa-bars')[0].parentNode;
+		if(window.getComputedStyle(elem,null).getPropertyValue('display')==='block')
+		{
+			console.log("bars");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="none";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="block";
+			$('.nav').show(400);
+		}
+		else if(window.getComputedStyle(elem,null).getPropertyValue('display')==='none')
+		{
+			console.log("times");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="block";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="none";			
+			$('.nav').hide(400);
+		}
 	}
+	
 	render()
 	{
 		if(this.props.uname!=="")
@@ -100,20 +145,24 @@ class Home extends React.Component
 			return(
 				<div>
 					<div className="mainHeader">
-						<div className="pavanLogo" onClick={this.nav.bind(this)}>
+						{/*<div className="pavanLogo" onClick={this.nav.bind(this)}>
 							<span className="pp">PP</span>
-						</div>
+						</div>*/}
+						<Hamburger>
+							<i className="fa fa-bars" onClick={this.nav.bind(this)}></i>
+						</Hamburger>
+						<Close>
+							<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
+						</Close>
 						<div className="nav">
-							<Link to="/register"><button className="btn">SignUp</button></Link>
-							<Link to="/login"><button className="btn">Login</button></Link>
+							<Link to="/register" className="btn">SignUp</Link>
+							<Link to="/login" className="btn">Login</Link>
 						</div>
 					</div>
-					<div className="error">
+					<div className="container">
 						<h1 className="hContent">{this.props.usersCount} users registered</h1>
 					</div>
-					<div className="footer">
-						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
-					</div>
+					<Footer/>
 				</div>
 			)
 		}

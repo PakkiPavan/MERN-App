@@ -7,6 +7,34 @@ import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
 import styled,{keyframes} from 'styled-components';
+import Footer from './Footer';
+
+const Hamburger=styled.i`
+	width:0px;
+	outline:none;
+	border:none;
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(max-width:975px){
+		display:block;
+	}
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
+const Close=styled.i`
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
 
 var load=keyframes`
 	0%
@@ -51,13 +79,12 @@ class Login extends React.Component
   constructor(props)
   {
     super(props);
-    this.state={count:-1}
+    this.state={count:-1,uname:''}
   }
   componentDidMount()
   {
     document.body.scrollTop=0;
     document.documentElement.scrollTop=0;
-
     console.log(this.props.history);
     console.log("Current uname in LOGIN is ",store.getState().uname);
     // store.subscribe(()=>{
@@ -91,13 +118,13 @@ class Login extends React.Component
       alert("All fields are mandatory");
     else
     {
+      
+			//document.getElementById('uname').value=this.props.uname;
       axios.post('/serverLogin',{uname:uname,password:password})
       .then(res=>{
         console.log(res.data);
         if(res.data.length>0)
         {
-          //this.setState({pass:!this.state.pass,uname:res.data[0].uname})
-          //this.props.unameCheck(res.data[0].uname)
           this.props.setUname(res.data[0].uname);
         }
         else
@@ -135,16 +162,31 @@ class Login extends React.Component
       // })
     }
   }
-  nav()
+	nav(e)
 	{
-		$('.nav').toggle(400);
-	}
-  // scroll()
-  // {
-  //   //console.log(document.body.scrollTop);
-  //   //console.log(document.documentElement.scrollTop);
-  //   document.documentElement.scrollTop=0;
-  // }
+		var elem=document.getElementsByClassName('fa fa-bars')[0].parentNode;
+		if(window.getComputedStyle(elem,null).getPropertyValue('display')==='block')
+		{
+			console.log("bars");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="none";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="block";
+			$('.nav').show(400);
+		}
+		else if(window.getComputedStyle(elem,null).getPropertyValue('display')==='none')
+		{
+			console.log("times");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="block";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="none";			
+			$('.nav').hide(400);
+		}
+  }
+  keyPress(e)
+  {
+    if(e.which===13)
+    {
+      this.login();
+    }
+  }
   render()
   {
     //var self=this;
@@ -161,36 +203,38 @@ class Login extends React.Component
       //console.log("logout after logout "+this.props.logout);
       return(
         <div className="container" id="container">
-          <h1 id="#top">Hello</h1>
           <div className="mainHeader">
-            <div className="pavanLogo" onClick={this.nav.bind(this)}>
-              <span className="pp">PP</span>
-            </div>
+              <Hamburger>
+								<i className="fa fa-bars" onClick={this.nav.bind(this)}></i>
+							</Hamburger>
+							<Close>
+								<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
+							</Close>            
             <div className="nav">
-              <Link to="/"><button className="btn">Home</button></Link>
-              <Link to="/register"><button className="btn">SignUp</button></Link>
+              <Link to="/" className="btn">Home</Link>
+              <Link to="/register" className="btn">SignUp</Link>
             </div>
           </div>
-              <div className="box login" id="loginBox">
-                <h1>Login</h1>
-                  <form id="form" autoComplete="off">
-                    <div className="inputBox">
-                      <input type="text" name="uname" id="uname" required/>
-                      <label>USERNAME</label>
-                    </div>
-                    <div className="inputBox">
-                      <input type="password" name="password" id="password" required/>
-                      <label>PASSWORD</label>
-                    </div>
-                    <div style={{position:'relative'}}>
-                      <p id="fail">Invalid Credentials</p>
-                      <button type="button" className="btn submit" onClick={this.login.bind(this)}>LOGIN</button>
-                    </div>
-                  </form>
-              </div>
-              <div className="footer" id="#footer">
-        				<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
-        			</div>
+          <div className="container">
+            <div className="box" id="loginBox">
+              <h1>Login</h1>
+                <form id="form" autoComplete="off">
+                  <div className="inputBox">
+                    <input type="text" name="uname" id="uname" onKeyPress={this.keyPress.bind(this)} required/>
+                    <label>USERNAME</label>
+                  </div>
+                  <div className="inputBox">
+                    <input type="password" name="password" id="password" onKeyPress={this.keyPress.bind(this)} required/>
+                    <label>PASSWORD</label>
+                  </div>
+                  <div className="btnDiv">
+											<button type="button" className="btnSubmit" onClick={this.login.bind(this)}>LOGIN</button>
+									</div>
+                  <p id="fail" className="warning">Invalid Credentials</p>
+                </form>
+            </div>
+          </div>
+          <Footer/>
         </div>
       );
     }

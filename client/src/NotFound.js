@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './MM.css';
 import $ from 'jquery';
+import Footer from './Footer';
 
 class NotFound extends React.Component
 {
@@ -30,9 +31,7 @@ class NotFound extends React.Component
 					<div className="error">
 						<h3 className="hContent">The page you are looking is Not Found</h3>
 					</div>
-					<div className="footer">
-						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
-					</div>
+					<Footer/>
 				</div>
 
 			);

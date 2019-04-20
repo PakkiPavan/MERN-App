@@ -9,6 +9,34 @@ import {connect} from 'react-redux';
 import {store} from './index';
 import styled,{keyframes} from 'styled-components';
 import axios from 'axios';
+import Footer from './Footer';
+
+const Hamburger=styled.i`
+	width:0px;
+	outline:none;
+	border:none;
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(max-width:975px){
+		display:block;
+	}
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
+const Close=styled.i`
+	font-size:25px;
+	padding:20px;
+	cursor:pointer;
+	color:white;
+	display:none; 
+	@media(min-width:974px){
+		display:none !important;
+	}
+`;
 
 var load=keyframes`
 	0%
@@ -120,7 +148,27 @@ class Rules extends React.Component
         }
     })
     .catch(err=>alert("Something went wrong"))
-  }
+	}
+	nav(e)
+	{
+		var elem=document.getElementsByClassName('fa fa-bars')[0].parentNode;
+		if(window.getComputedStyle(elem,null).getPropertyValue('display')==='block')
+		{
+			console.log("bars");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="none";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="block";
+			$('.nav').show(400);
+		}
+		else if(window.getComputedStyle(elem,null).getPropertyValue('display')==='none')
+		{
+			console.log("times");
+			document.getElementsByClassName('fa fa-bars')[0].parentNode.style.display="block";
+			document.getElementsByClassName('fa fa-times')[0].parentNode.style.display="none";			
+			$('.nav').hide(400);
+		}
+	}
+
+
 	render()
 	{
 		if(this.props.uname!==""&&this.state.count!==-1)
@@ -128,14 +176,17 @@ class Rules extends React.Component
 			return(
 				<div>
 					<div className="mainHeader">
-						<div className="pavanLogo" onClick={this.nav.bind(this)}>
-							<span className="pp">PP</span>
-						</div>
+						<Hamburger>
+							<i className="fa fa-bars" onClick={this.nav.bind(this)}></i>
+						</Hamburger>
+						<Close>
+							<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
+						</Close>            
 						<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
-						<span className="profile">Welcome {this.props.uname}</span>
 						<div className="nav">
-							<Link to="/mastermind"><button className="btn">Home</button></Link>
-							<Link to="/play"><button className="btn">Play game</button></Link>
+							<span className="profile1">{this.props.uname}</span>
+							<Link to="/mastermind" className="btn">Home</Link>
+							<Link to="/play" className="btn">Play game</Link>
 							<button className="btn" onClick={this.logout.bind(this)}>Logout</button>
 						</div>
 					</div>
@@ -159,10 +210,7 @@ class Rules extends React.Component
 						<br></br>
 						<center><b style={{fontSize:'25px'}}>Good Luck!!</b></center>
 					</div>
-
-					<div className="footer">
-						<p className="copyrights">&copy; Copyrights Pakki Pavan 2019</p>
-					</div>
+					<Footer/>
 				</div>
 			)
 		}

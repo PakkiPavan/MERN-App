@@ -1,10 +1,9 @@
 #board{
 	background-color:#4e2c52;
 	width:364px;
-	position: absolute;
-	top:74%;
-	left:50%;
-	transform: translate(-50%,-50%);
+	min-height:433px;
+	padding-bottom:100px;
+	position: relative;
 }
 .circle{
 	width:40px;
@@ -102,9 +101,8 @@
 	margin:9px 0px;
 }
 .rules{
-	position:absolute;
-	top:200px;
-	left:20px;
+	min-height:570px;
+	padding-bottom:100px;
 }
 a{
 	color:white;
@@ -121,32 +119,7 @@ a{
 	font-family:-webkit-body;
 	float:left;
 	position:absolute;
-	left:30%;
+	left:18%;
 	top:20%;
-	transform:translate(-50%,-50%);
-	font-size:38px;
-}
-@media(max-width:888px){
-	.mastermindHeading{
-		top:25%;
-		left: 50%;
-		font-size: 25px;
-	}
-}
-/* .copyrights{
-	position:absolute;
-	left:50%;
-	top:50%;
-	transform:translate(-50%,-50%);
-	width:fit-content;
-	font-size:20px;
-	color:white;
-} */
-@media(max-width:888px){
-	#board{
-		top:95%;
-	}
-	.rules{
-		top:135px;
-	}
+	font-size:25px;
 }
