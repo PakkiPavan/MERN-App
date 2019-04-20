@@ -211,8 +211,8 @@ class Login extends React.Component
 								<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
 							</Close>            
             <div className="nav">
-              <Link to="/" className="btn">Home</Link>
-              <Link to="/register" className="btn">SignUp</Link>
+              <Link to="/" className="btn"><i class="fa fa-home" aria-hidden="true"></i>&ensp;Home</Link>
+              <Link to="/register" className="btn"><i class="fa fa-user-plus" aria-hidden="true"></i>&ensp;SignUp</Link>
             </div>
           </div>
           <div className="container">

@@ -313,9 +313,9 @@ class MMPlay extends React.Component
 						<center><h1 className="mastermindHeading">MASTERMIND</h1></center>
 						<div className="nav">
 							<span className="profile1">{this.props.uname}</span>
-							<Link to="/mastermind" className="btn">Home</Link>
+							<Link to="/mastermind" className="btn"><i class="fa fa-home" aria-hidden="true"></i>&ensp;Home</Link>
 							<Link to="/rules" className="btn">How to Play</Link>
-							<button className="btn" onClick={this.logout.bind(this)}>Logout</button>
+							<button className="btn" onClick={this.logout.bind(this)}><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
 						</div>
 					</div>
 
