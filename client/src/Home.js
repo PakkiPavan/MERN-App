@@ -155,8 +155,8 @@ class Home extends React.Component
 							<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
 						</Close>
 						<div className="nav">
-							<Link to="/register" className="btn"><i class="fa fa-user-plus" aria-hidden="true"></i>&ensp;SignUp</Link>
-							<Link to="/login" className="btn"><i class="fa fa-sign-in" aria-hidden="true"></i>&ensp;Login</Link>
+							<Link to="/register" className="btn"><i className="fa fa-user-plus" aria-hidden="true"></i>&ensp;SignUp</Link>
+							<Link to="/login" className="btn"><i className="fa fa-sign-in" aria-hidden="true"></i>&ensp;Login</Link>
 						</div>
 					</div>
 					<div className="container">

@@ -6,7 +6,7 @@ import ErrorPage from './ErrorPage';
 import Login from './Login';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
-import {store} from './index';
+//import {store} from './index';
 import styled,{keyframes} from 'styled-components';
 import axios from 'axios';
 import Footer from './Footer';
@@ -131,10 +131,6 @@ class Rules extends React.Component
     })
     .catch(err=>alert("Something went wrong"))
 
-	}
-	nav()
-	{
-		$('.nav').toggle(400);
 	}
 	logout()
   {

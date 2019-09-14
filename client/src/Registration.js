@@ -268,8 +268,8 @@ class Registration extends React.Component
 									<i className="fa fa-times" onClick={this.nav.bind(this)}></i>
 								</Close>
 								<div className="nav">
-									<Link to="/" className="btn"><i class="fa fa-home" aria-hidden="true"></i>&ensp;Home</Link>
-									<Link to="/login" className="btn"><i class="fa fa-sign-in" aria-hidden="true"></i>&ensp;Login</Link>
+									<Link to="/" className="btn"><i className="fa fa-home" aria-hidden="true"></i>&ensp;Home</Link>
+									<Link to="/login" className="btn"><i className="fa fa-sign-in" aria-hidden="true"></i>&ensp;Login</Link>
 								</div>
 							</div>
 							<div className="container">

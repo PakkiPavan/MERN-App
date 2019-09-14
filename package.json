@@ -25,6 +25,8 @@
     "express-session": "^1.15.6",
     "history": "^4.7.2",
     "mongoose": "^5.4.11",
+    "nodemailer": "^6.1.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "reactstrap": "^7.1.0",
     "styled-components": "^4.1.3"
   },

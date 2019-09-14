@@ -5,12 +5,22 @@ const app=express();
 var session=require('express-session')
 const port=Number(process.env.PORT || 3001);
 const path=require('path');
+var nodemailer=require('nodemailer');
+//client ID: 619484619705-aj76lio2024eov6p4pihdk48mlc778qi.apps.googleusercontent.com
+//client secret: QaVWaQhLRO-QQGVUFBvVDjVo
+//Authorization code: 4/MwHwjoJfwrWfIYM5ySWIjx3Kp2FaSIglsKVUNmJJPwLhbXvO95VwXW7QPJOA4xTuI-aiLRBdPSgyV_XhcrPLADQ
+//Refresh token: 1/LmHOuvMjdKNd14PdqzDnqJWmCY0uYAFqEQadSkD0_jo
+//Access token: ya29.GlvyBv7jS03a78iXf3ySz4ScOs3BKOv1ivoBtAM9qyYsVrni75BmyMwu7uhZDZt75AVRVkLMDZN54C1aMeOig4Dl0ogY6BUPS50qnCK5ZNYl9xiySYtZiXxoSG2i
+
+var smtpTransport=require('nodemailer-smtp-transport');
 const bodyParser=require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
+// var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
+var url="mongodb://pavan:pavan786@ds219078.mlab.com:19078/mern_app";
 var sess=null;
+
 mongoose.connect(url,function(err){
 	if(err)
 		throw err;
@@ -104,6 +114,49 @@ app.post('/serverRegister',function(req,res){
 				throw err;
 			db.close();
 		})
+	//Email verification start
+	let transporter = nodemailer.createTransport({
+		service:'gmail',
+		auth: {
+			type: 'OAuth2',
+			user: 'pakkicode@gmail.com',
+			clientId:'619484619705-aj76lio2024eov6p4pihdk48mlc778qi.apps.googleusercontent.com',
+			clientSecret: 'QaVWaQhLRO-QQGVUFBvVDjVo',
+			refreshToken: '1/LmHOuvMjdKNd14PdqzDnqJWmCY0uYAFqEQadSkD0_jo',
+			accessToken: 'ya29.GlvyBv7jS03a78iXf3ySz4ScOs3BKOv1ivoBtAM9qyYsVrni75BmyMwu7uhZDZt75AVRVkLMDZN54C1aMeOig4Dl0ogY6BUPS50qnCK5ZNYl9xiySYtZiXxoSG2i'
+		}
+	});
+	//client ID: 619484619705-aj76lio2024eov6p4pihdk48mlc778qi.apps.googleusercontent.com
+	//client secret: QaVWaQhLRO-QQGVUFBvVDjVo
+	//Authorization code: 4/MwHwjoJfwrWfIYM5ySWIjx3Kp2FaSIglsKVUNmJJPwLhbXvO95VwXW7QPJOA4xTuI-aiLRBdPSgyV_XhcrPLADQ
+	//Refresh token: 1/LmHOuvMjdKNd14PdqzDnqJWmCY0uYAFqEQadSkD0_jo
+	//Access token: ya29.GlvyBv7jS03a78iXf3ySz4ScOs3BKOv1ivoBtAM9qyYsVrni75BmyMwu7uhZDZt75AVRVkLMDZN54C1aMeOig4Dl0ogY6BUPS50qnCK5ZNYl9xiySYtZiXxoSG2i
+	
+	var mailOptions={
+		from:'pakkicode@gmail.com',
+		to:'pavanpakki007@gmail.com',
+		subject:'Confirmation mail',
+		//text:'Hi Pavan, This is the mail regarding to test whether the email verification is working or not using node JS'
+		html:`
+			<h3>Hi Pavan,</h3>
+			<p>This is the mail regarding to test whether the email verification is working or not using node JS</p>
+			<h2>Thanks and Regards</h2>
+			<h3>If you have any queries ask at pakkicode@gmail.com</h3>
+			`
+	};
+	transporter.sendMail(mailOptions,function(err,info){
+		if(err)
+		{
+			console.log("ERROR in sending email")
+			console.log(err);
+		}
+		else
+		{
+			console.log("Email Sent");
+			console.log(info);
+		}
+	});
+	//Email verification end
 		res.send("Inserted");
 	})
 	/*var data=new userModel(req.body)
@@ -166,6 +219,49 @@ app.post('/serverLogin',function(req,res){
 				db.close();
 		})
 	})
+	//Email verification start
+	// let transporter = nodemailer.createTransport({
+	// 	service:'gmail',
+	// 	auth: {
+	// 		type: 'OAuth2',
+	// 		user: 'pakkicode@gmail.com',
+	// 		clientId:'619484619705-aj76lio2024eov6p4pihdk48mlc778qi.apps.googleusercontent.com',
+	// 		clientSecret: 'QaVWaQhLRO-QQGVUFBvVDjVo',
+	// 		refreshToken: '1/LmHOuvMjdKNd14PdqzDnqJWmCY0uYAFqEQadSkD0_jo',
+	// 		accessToken: 'ya29.GlvyBv7jS03a78iXf3ySz4ScOs3BKOv1ivoBtAM9qyYsVrni75BmyMwu7uhZDZt75AVRVkLMDZN54C1aMeOig4Dl0ogY6BUPS50qnCK5ZNYl9xiySYtZiXxoSG2i'
+	// 	}
+	// });
+	//client ID: 619484619705-aj76lio2024eov6p4pihdk48mlc778qi.apps.googleusercontent.com
+	//client secret: QaVWaQhLRO-QQGVUFBvVDjVo
+	//Authorization code: 4/MwHwjoJfwrWfIYM5ySWIjx3Kp2FaSIglsKVUNmJJPwLhbXvO95VwXW7QPJOA4xTuI-aiLRBdPSgyV_XhcrPLADQ
+	//Refresh token: 1/LmHOuvMjdKNd14PdqzDnqJWmCY0uYAFqEQadSkD0_jo
+	//Access token: ya29.GlvyBv7jS03a78iXf3ySz4ScOs3BKOv1ivoBtAM9qyYsVrni75BmyMwu7uhZDZt75AVRVkLMDZN54C1aMeOig4Dl0ogY6BUPS50qnCK5ZNYl9xiySYtZiXxoSG2i
+	
+	// var mailOptions={
+	// 	from:'pakkicode@gmail.com',
+	// 	to:'pavanpakki007@gmail.com',
+	// 	subject:'Confirmation mail',
+		//text:'Hi Pavan, This is the mail regarding to test whether the email verification is working or not using node JS'
+	// 	html:`
+	// 		<h3>Hi Pavan,</h3>
+	// 		<p>This is the mail regarding to test whether the email verification is working or not using node JS</p>
+	// 		<h2>Thanks and Regards</h2>
+	// 		<h3>If you have any queries ask at pakkicode@gmail.com</h3>
+	// 		`
+	// };
+	// transporter.sendMail(mailOptions,function(err,info){
+	// 	if(err)
+	// 	{
+	// 		console.log("ERROR in sending email")
+	// 		console.log(err);
+	// 	}
+	// 	else
+	// 	{
+	// 		console.log("Email Sent");
+	// 		console.log(info);
+	// 	}
+	// });
+	//Email verification end
 	//res.send("pass")
 })
 // app.get('/login',function(req,res){

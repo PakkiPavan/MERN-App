@@ -127,10 +127,6 @@ class MMPlay extends React.Component
 		// }
 
 	}
-	nav()
-	{
-		$('.nav').toggle(400);
-	}
 	logout()
   {
 		this.props.logoutCheck();
