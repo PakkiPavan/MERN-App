@@ -9,7 +9,8 @@ const bodyParser=require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
+// var url="mongodb://pavan:pavan786@ds123645.mlab.com:23645/test1";
+var url="mongodb://pavan:pavan786@ds219078.mlab.com:19078/mern_app";
 var sess=null;
 mongoose.connect(url,function(err){
 	if(err)
@@ -31,10 +32,10 @@ app.use(
 	PUT	    Update
 	DELETE	Delete
 */
-setInterval(function(){
+/* setInterval(function(){
 	http.get('https://ancient-tundra-40322.herokuapp.com/')
 },20*60*1000) //every 20 minutes
-
+ */
 var userSchema=new mongoose.Schema({
 	fname:String,
 	email:String,
