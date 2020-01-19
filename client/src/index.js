@@ -16,6 +16,8 @@ import {HashRouter,Route,Switch} from 'react-router-dom';
 //import {BrowserRouter,HashRouter,Route,Switch} from 'react-router-dom';
 import Rules from './Rules';
 //import createHistory from 'history/createBrowserHistory'
+import Codeforces from './Codeforces';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const store=createStore(MMReducer);
 
@@ -34,6 +36,7 @@ ReactDOM.render(
 					<Route exact path="/" component={Home}/>
 					<Route path="/register" component={Registration}/>
 					<Route path="/login" component={Login}/>
+					<Route path="/codeforces" component={Codeforces}/>
 					<Route path="/like" component={App}/>
 					<Route path="/mastermind" component={MMHome}/>
 					<Route path="/rules" component={Rules}/>

@@ -106,6 +106,7 @@ class Home extends React.Component
 						<div className="nav">
 							<Link to="/register"><button className="btn">SignUp</button></Link>
 							<Link to="/login"><button className="btn">Login</button></Link>
+							<Link to="/codeforces"><button className="btn">Codeforces</button></Link>
 						</div>
 					</div>
 					<div className="error">
