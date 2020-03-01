@@ -12,12 +12,14 @@ import MMPlay from './MMPlay';
 import MMHome from './MMHome';
 import MMReducer from './MMReducer';
 import NotFound from './NotFound';
+import Spotify from './Spotify';
+import Youtube from './Youtube';
 import {HashRouter,Route,Switch} from 'react-router-dom';
 //import {BrowserRouter,HashRouter,Route,Switch} from 'react-router-dom';
 import Rules from './Rules';
 //import createHistory from 'history/createBrowserHistory'
 import Codeforces from './Codeforces';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const store=createStore(MMReducer);
 
@@ -41,6 +43,8 @@ ReactDOM.render(
 					<Route path="/mastermind" component={MMHome}/>
 					<Route path="/rules" component={Rules}/>
 					<Route path="/play" component={MMPlay}/>
+					<Route path="/spotify" component={Spotify}/>
+					<Route path="/youtube" component={Youtube}/>
 					<Route path="/*" component={NotFound}/>
 				</Switch>
 			</Provider>

@@ -6,6 +6,9 @@ var session=require('express-session')
 const port=Number(process.env.PORT || 3001);
 const path=require('path');
 const bodyParser=require('body-parser');
+const queryString=require('query-string');
+let request=require("request");
+// let axios=requires("axios");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -18,6 +21,11 @@ mongoose.connect(url,function(err){
 	console.log("Connected");
 });
 
+let encode_uri = 'http%3A%2F%2Flocalhost%3A3001%2Fcallback%2F';
+let redirect_uri = "http://localhost:3001/callback/"
+let clientId = "764ecb0f59f942d8be3b5104e67d77c7";
+let clientSecret = "2cde13a391af4561859f5ee9ac505b44";
+let code = "AQDNJ671BrgRv1DQ3HlVitRF5CxFTpuPtC9JbLO_nzr9lnDZqjYQzaXiHnlDmEKDIomq5NTRuRa5mQpFDhQTzbplsdpX6csd71mfHomXV8DgksWP1q0rSJaMZt-Jui3qmLye__E_6eO4Z4bCPugydKTHExGPlQ24fx2Rauprues_7-rGNIm3koNgJSeuQ1gHjdzNaaA";
 app.use(
 	session({
 		secret:"aaaa",
@@ -127,6 +135,60 @@ app.get("/countUsers",function(req,res){
 		})
 	})
 })
+
+// redirect_uri = process.env.REDIRECT_URI || 'http://localhost:3001/callback';
+// Encode URI = http%3A%2F%2Flocalhost%3A3001%2Fcallback%2F
+
+// clientId="764ecb0f59f942d8be3b5104e67d77c7";
+
+// code = AQDNJ671BrgRv1DQ3HlVitRF5CxFTpuPtC9JbLO_nzr9lnDZqjYQzaXiHnlDmEKDIomq5NTRuRa5mQpFDhQTzbplsdpX6csd71mfHomXV8DgksWP1q0rSJaMZt-Jui3qmLye__E_6eO4Z4bCPugydKTHExGPlQ24fx2Rauprues_7-rGNIm3koNgJSeuQ1gHjdzNaaA
+
+//https://accounts.spotify.com/authorize?response_type=code&client_id=764ecb0f59f942d8be3b5104e67d77c7&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fcallback%2F
+//https://accounts.spotify.com/authorize?response_type=code&client_id=764ecb0f59f942d8be3b5104e67d77c7&redirect_uri=http://localhost:3001/callback/
+
+app.get("/spotifyLogin",function(req,res){
+	console.log("Server Spotify Login");
+	res.redirect('https://accounts.spotify.com/authorize?' +
+		queryString.stringify({
+			response_type: 'code',
+			client_id: clientId,
+			redirect_uri//encode_uri
+		})
+	)
+})
+
+// access_token = "BQC-pr-eCvyhUk8HTcoohq0-V3q2tOc9POMC-U9W6Iyni-sEBHhGMDoFxQ2nYiigMeTbTPjgixXjRQbtJXZ2ZkQLDUTnPoWcSWTV2Mt6lWZfunXCiZRI_bokgCzI19kykDOQKXlG5W5S8IK7EqUCcUPZPsK0fO_7LA"
+app.get('/callback', function(req, res) {
+	console.log("SPOTIFY CALLBACK");
+	let code = req.query.code || null
+	console.log("CODE",code)
+	let authOptions = {
+	  url: 'https://accounts.spotify.com/api/token',
+	  form: {
+		code: code,
+		redirect_uri:"http://localhost:3001/callback/",
+		grant_type: 'authorization_code'
+	  },
+	  headers: {
+		'Authorization': 'Basic ' + (new Buffer(
+		  clientId + ':' + clientSecret
+		).toString('base64'))
+	  },
+	  json: true
+	}
+	request.post(authOptions, function(error, response, body) {
+		console.log("POST");
+		// console.log(response);
+		console.log(body)
+		console.log(error)
+		var access_token = body.access_token
+		console.log("ACCESS TOKEN",access_token);
+		let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
+		res.redirect(uri + '?access_token=' + access_token)
+	})
+})
+
+
 app.post('/serverLogin',function(req,res){
 	//console.log(req.body)
 	//console.log(req.session.uname)

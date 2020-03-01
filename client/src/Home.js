@@ -107,6 +107,8 @@ class Home extends React.Component
 							<Link to="/register"><button className="btn">SignUp</button></Link>
 							<Link to="/login"><button className="btn">Login</button></Link>
 							<Link to="/codeforces"><button className="btn">Codeforces</button></Link>
+							{/* <Link to="/spotify"><button className="btn">Spotify</button></Link> */}
+							<Link to="/youtube"><button className="btn">Youtube</button></Link>
 						</div>
 					</div>
 					<div className="error">
@@ -121,11 +123,15 @@ class Home extends React.Component
 		else
 		{
 			return(
-				<Loading>
-					<div>
+				<div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}>
+					<i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
+					{/*
+					<Loading>
+					<div className="load">
 						Loading...
 					</div>
-				</Loading>
+					</Loading>*/}
+				</div>
 			)
 		}
 	}

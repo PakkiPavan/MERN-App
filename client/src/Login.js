@@ -205,11 +205,15 @@ class Login extends React.Component
     else
     {
       return(
-        <Loading>
-          <div className="load">
-            Loading...
-          </div>
-        </Loading>
+        <div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}>
+					<i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
+					{/*
+					<Loading>
+					<div className="load">
+						Loading...
+					</div>
+					</Loading>*/}
+				</div>
       )
     }
   }
