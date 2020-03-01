@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {store} from './index';
 import styled,{keyframes} from 'styled-components';
 
-let apiKey="AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90";
+let apiKey=<API_KEY>;
 var load=keyframes`
 	0%
 	{
