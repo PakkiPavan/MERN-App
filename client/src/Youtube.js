@@ -9,7 +9,9 @@ import {store} from './index';
 import styled,{keyframes} from 'styled-components';
 
 // Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
-let apiKey="<API_KEY>";
+//let apiKey=<API_KEY>;
+// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
+let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
 
 var load=keyframes`
 	0%
@@ -126,6 +128,7 @@ class Youtube extends React.Component
             <div className="container" id="container">
                 <h1>Youtube</h1>
                 <input onChange={this.handleChange} placeholder="Search youtube videos" onKeyPress={this.handleKeyPress}/>
+                <button onClick={this.search}>Get Videos</button>
                 {/* <button onClick={this.test}>HTTP Test</button> */}
                 {src && (
                     <div>
