@@ -7,7 +7,15 @@ const port=Number(process.env.PORT || 3001);
 const path=require('path');
 const bodyParser=require('body-parser');
 const queryString=require('query-string');
-let request=require("request");
+// let request=require("request");
+// var proxy = require('express-http-proxy');
+//For youtube to mp3 start
+const ytdl = require('ytdl-core');
+const fs = require('fs');
+var through = require('through');
+var youtubeStream = require('youtube-audio-stream');
+//For youtube to mp3 end
+
 // let axios=requires("axios");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -188,7 +196,43 @@ app.get('/callback', function(req, res) {
 	})
 })
 
+app.get("/httpTest",function(req,res){
+	console.log("httpTest");
+	var getAudio = function (req, res) {
+		var requestUrl = 'http://youtube.com/watch?v=OCg6BWlAXSw';// + req.params.videoId
+		try {
+			youtubeStream(requestUrl).pipe(res)
+		} catch (exception) {
+			console.log("CATCH")
+		  res.status(500).send(exception)
+		}
+	  }
+	  console.log("getAudio")
+	  console.log(getAudio);
+	// const videoUrl = 'https://www.youtube.com/watch?v=' + req.params.videoId;
+	/* const videoUrl = 'https://www.youtube.com/watch?v=OCg6BWlAXSw';
+	
+	try {
+		var videoReadableStream = ytdl(videoUrl, { filter: 'audioonly'});
+		// videoReadableStream.on('info', function(info) {
+		// 	console.log(info)
+		// 	console.log('Download started')
+		// 	console.log('filename: ' + info._filename)
+		// 	console.log('size: ' + info.size)
+		// })
+		ytdl.getInfo(videoUrl, [] ,function(err, info){
+			var videoName = info.title.replace('|','').toString('ascii');
 
+			videoReadableStream.on('end', () => res.end(videoReadableStream));
+			videoReadableStream.pipe(res);
+		});
+	} catch (exception) {
+	console.log(exception);
+	res.end("Error");
+	} */
+
+
+})
 app.post('/serverLogin',function(req,res){
 	//console.log(req.body)
 	//console.log(req.session.uname)

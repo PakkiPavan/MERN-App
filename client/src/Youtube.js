@@ -8,7 +8,11 @@ import {connect} from 'react-redux';
 import {store} from './index';
 import styled,{keyframes} from 'styled-components';
 
-let apiKey=<API_KEY>;
+// Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
+//let apiKey=<API_KEY>;
+// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
+let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
+
 var load=keyframes`
 	0%
 	{
@@ -78,7 +82,7 @@ class Youtube extends React.Component
     handleKeyPress = (event) =>{
         if(event.key==="Enter")
         {
-        this.search();
+            this.search();
         }
     } 
     search = () =>{
@@ -87,11 +91,14 @@ class Youtube extends React.Component
         fetch(URL)
         .then(response => response.json())
         .then(data => {
-        console.log("VIDEO DETAILS FETCHED");
-        console.log(data);
-        this.setState({
-            videoId: data.items[0].id.videoId
-        });
+            console.log("VIDEO DETAILS FETCHED");
+            console.log(data);
+            this.setState({
+                videoId: data.items[0].id.videoId
+            },()=>{
+                if(document.getElementById("videoFrame"))
+                    document.getElementById("videoFrame").style.display="none";
+            })
         }).catch(err=>{
         alert("ERROR WHILE FETCHING VIDEO DETAILS");
         });
@@ -101,27 +108,41 @@ class Youtube extends React.Component
     {
         $('.nav').toggle(400);
     }
+    test = () =>{
+        axios.get('/httpTest')
+        .then(res=>{
+            console.log("test")
+            console.log(res)
+        })
+        .catch(err=>alert("Something went wrong"))
+    }
     render()
     {
         console.log("VIDEO ID",this.state.videoId)
         let src=null;
         if(this.state.videoId)
         {
-            src="https://www.youtube.com/embed/"+this.state.videoId
+            src="https://www.youtube.com/embed/"+this.state.videoId+"?autoplay=1"
         }
         return(
             <div className="container" id="container">
                 <h1>Youtube</h1>
                 <input onChange={this.handleChange} placeholder="Search youtube videos" onKeyPress={this.handleKeyPress}/>
+                {/* <button onClick={this.test}>HTTP Test</button> */}
                 {src && (
-                    <iframe 
-                        width="853" 
-                        height="480" 
-                        src={src}
-                        frameBorder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowFullScreen>
-                    </iframe>
+                    <div>
+                        <iframe
+                            id="videoFrame" 
+                            width="853" 
+                            height="480" 
+                            src={src}
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen
+                            >
+                        </iframe>
+                        <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
+                    </div>
                 )}
             </div>
         );
