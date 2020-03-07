@@ -7,6 +7,10 @@ import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
 import styled,{keyframes} from 'styled-components';
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button
+  } from 'reactstrap';
 
 // Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
 //let apiKey=<API_KEY>;
@@ -56,7 +60,7 @@ class Youtube extends React.Component
     constructor(props)
     {
         super(props);
-        this.state={count:-1}
+        this.state={count:-1,isHidden:false};
     }
     componentDidMount()
     {
@@ -84,7 +88,15 @@ class Youtube extends React.Component
         {
             this.search();
         }
-    } 
+    };
+    hideVideo = () =>{
+        this.setState({
+            isHidden:!this.state.isHidden
+        },()=>{
+            if(document.getElementById("videoFrame"))
+                document.getElementById("videoFrame").style.display=this.state.isHidden ? "block" : "none";
+        });
+    }
     search = () =>{
         // let URL="https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90&part=snippet&q=samajavaragamana video song"
         let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${this.state.query}&maxResults=10`;
@@ -122,13 +134,24 @@ class Youtube extends React.Component
         let src=null;
         if(this.state.videoId)
         {
-            src="https://www.youtube.com/embed/"+this.state.videoId+"?autoplay=1"
+            // src="https://www.youtube.com/embed/"+this.state.videoId+"?autoplay=1"
+            src="https://www.youtube-nocookie.com/embed/"+this.state.videoId+"?autoplay=1"
         }
         return(
             <div className="container" id="container">
                 <h1>Youtube</h1>
                 <input onChange={this.handleChange} placeholder="Search youtube videos" onKeyPress={this.handleKeyPress}/>
                 <button onClick={this.search}>Get Videos</button>
+                <button onClick={this.hideVideo}>Click here</button>
+                {/* <Card>
+                    <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+                    <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                    <Button>Button</Button>
+                    </CardBody>
+                </Card> */}
                 {/* <button onClick={this.test}>HTTP Test</button> */}
                 {src && (
                     <div>
