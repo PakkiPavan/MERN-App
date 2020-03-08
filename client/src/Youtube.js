@@ -117,12 +117,13 @@ class Youtube extends React.Component
             console.log("VIDEO DETAILS FETCHED");
             console.log(data);
             this.setState({
+                items:data.items,
                 videoId: data.items[0].id.videoId,
                 thumbnail:data.items[0].snippet.thumbnails.medium.url,
                 title:data.items[0].snippet.title,
                 channelTitle:data.items[0].snippet.channelTitle,
                 iframeHeight:String(window.innerHeight-100),
-                iframeWidth:String(window.innerWidth-100)
+                iframeWidth:String(window.innerWidth-500)
             },()=>{
                 if(document.getElementById("videoFrame"))
                     document.getElementById("videoFrame").style.display="none";
@@ -139,27 +140,49 @@ class Youtube extends React.Component
     test = () =>{
         axios.get('/httpTest')
         .then(res=>{
-            console.log("test")
-            console.log(res)
+            // console.log("test")
+            // console.log(res)
         })
         .catch(err=>alert("Something went wrong"))
     };
     checkTest = (event) =>{
-        console.log("checkTest");
+        // console.log("checkTest");
         event.persist();
-        console.log(event.target.checked)
+        // console.log(event.target.checked)
+    };
+    loadVideo = (event) =>{
+        event.persist();
+        console.log("loadVideo");
+        console.log(event.target.id);
+        console.log(event)
     }
     render()
     {
-        console.log("VIDEO ID",this.state.videoId)
+        // console.log("VIDEO ID",this.state.videoId)
         let src=null;
         if(this.state.videoId)
         {
             // src="https://www.youtube.com/embed/"+this.state.videoId+"?autoplay=1"
             src="https://www.youtube-nocookie.com/embed/"+this.state.videoId+"?autoplay=1"
         }
+        let items=this.state.items;
+        let cards=[];
+        if(items)
+        {
+            items.map((ele)=>{
+                cards.push(
+                    <div key={ele.id.videoId} id={ele.id.videoId} className="cardsContainer" onClick={this.loadVideo}>
+                        <img src={ele.snippet.thumbnails.medium.url} alt="thumbnail"/>
+                        <div className="customCard">
+                            <span className="videoTitle">{ele.snippet.title}</span>
+                            <span className="channelTitle">{ele.snippet.channelTitle}</span>
+                        </div>
+                    </div>
+                )
+            })
+        }
         return(
-            <div className="container" id="container" style={{margin:"0px"}}>
+            <div className="youtubeContainer" id="youtubeContainer">
                 <h1>Youtube</h1>
                 <input onChange={this.handleChange} placeholder="Search Youtube Videos" onKeyPress={this.handleKeyPress} className="searchField"/>
                 <button className="searchBtn"><i className="fa fa-search" onClick={this.search}></i></button>
@@ -176,16 +199,16 @@ class Youtube extends React.Component
                         <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
                     </div>
                 )}
-                {(src && this.state.isHidden) && (
+                {/* {(src && this.state.isHidden) && (
                     <div className="cardsContainer">
                         <img src={this.state.thumbnail} style={{width:"168px",float:"left",borderTopLeftRadius:"10px",borderBottomLeftRadius:"10px"}} alt="thumbnail"/>   
-                        {/* <img src="https://i.ytimg.com/vi/sBws8MSXN7A/mqdefault.jpg" style={{width:"168px",float:"left"}} alt="thumbnail"/>    */}
+                        <img src="https://i.ytimg.com/vi/sBws8MSXN7A/mqdefault.jpg" style={{width:"168px",float:"left"}} alt="thumbnail"/>   
                         <div className="customCard">
                             <span className="videoTitle">{this.state.title}</span>
-                            <span className="videoDescription">{this.state.channelTitle}</span>
+                            <span className="channelTitle">{this.state.channelTitle}</span>
                         </div>
-                    </div>                    
-                )}
+                    </div>
+                )} */}
                 {/* <button onClick={this.test}>HTTP Test</button> */}
                 {src && (
                     <div>
@@ -201,6 +224,11 @@ class Youtube extends React.Component
                             allowFullScreen
                         >
                         </iframe>
+                    </div>
+                )}
+                {(this.state.items && this.state.isHidden) && (
+                    <div className="customCards">
+                        {cards}
                     </div>
                 )}
             </div>

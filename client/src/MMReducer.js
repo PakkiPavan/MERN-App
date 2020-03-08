@@ -16,7 +16,7 @@ const initialState={
 }
 function MMReducer(state=initialState,action)
 {
-	console.log("Inside Reducer");
+	// console.log("Inside Reducer");
 	//console.log(action.value)
 //Mastermind Reducer start
 	switch(action.type)

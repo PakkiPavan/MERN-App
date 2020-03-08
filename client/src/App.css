@@ -472,35 +472,71 @@ p{
 #videoFrame{
 	margin-top: 20px;
 	margin-bottom: 20px;
+	float:left;
 	/* margin-left: -70px; */
 }
 
 /* Card */
 .cardsContainer{
 	border: 1px solid grey;
-	background: silver;
+	background: white;
 	height: 95px;
 	width:400px;
 	position: relative;
 	border-radius:10px;
 	margin: 10px;
+	cursor: pointer;
+	display: block;
+}
+.cardsContainer img{
+	width:168px;
+	float:left;
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
 }
 .customCard{
 	position: relative;
 	right:10px;
 }
 .videoTitle{
-	width: 220px;
+	width: 200px;
 	position: absolute;
 	right:-3px;
+	font-weight: bolder;
+	font-size:12px;
 }
-.videoDescription{
+.channelTitle{
 	position: absolute;
-	top: 75px;
-	right: 90px;
+	top: 70px;
+	left: 200px;
+	/* font-weight: bolder; */
+	font-size:16px;
 }
-
-
+.customCards{
+	float: right;
+}
+.youtubeContainer{
+	margin:5px;
+}
+@media(max-width:500px){
+	.cardsContainer{
+		height:220px;
+		width:350px;
+	}
+	.cardsContainer img{
+		height: 150px;
+		width:350px;
+	}
+	.videoTitle{
+		bottom:45px;
+		left:15px;
+		width: fit-content;
+	}
+	.channelTitle{
+		top: 185px;
+		left:15px;
+	}
+}
 
 /*	"dev":"concurrently \"npm run server\" \"npm run client\""  */
 
