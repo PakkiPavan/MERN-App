@@ -14,8 +14,10 @@ import styled,{keyframes} from 'styled-components';
 //   } from 'reactstrap';
 
 // Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
-let apiKey="<API_KEY>";
-
+//let apiKey="<API_KEY>";
+// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
+// let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
+let apiKey="";
 
 var load=keyframes`
 	0%
@@ -69,6 +71,14 @@ class Youtube extends React.Component
     }
     componentDidMount()
     {
+        fetch("/apiKeys.json")
+        .then(res=>res.json())
+        .then(data=>{
+            apiKey=data.youtubeApiKey;
+        })
+        .catch(err=>{
+            alert("ERROR WHILE FETCHING YOUTUBE API KEY")
+        })
         // // let URL="https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90&part=snippet&q=samajavaragamana video song"
         // let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=samajavaragamana video song&maxResults=10`;
         // fetch(URL)
