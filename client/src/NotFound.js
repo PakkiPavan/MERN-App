@@ -24,7 +24,7 @@ class NotFound extends React.Component
 							<span className="pp">PP</span>
 						</div>
 						<div className="nav">
-								<Link to="/login"><button className="btn">Login</button></Link>
+								<Link to="/login"><button className="customBtn">Login</button></Link>
 						</div>
 					</div>
 					<div className="error">

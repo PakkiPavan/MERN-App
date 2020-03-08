@@ -134,9 +134,9 @@ class Rules extends React.Component
 						<center><h1 className="mastermindHeading">MASTERMIND</h1></center><br/>
 						<span className="profile">Welcome {this.props.uname}</span>
 						<div className="nav">
-							<Link to="/mastermind"><button className="btn">Home</button></Link>
-							<Link to="/play"><button className="btn">Play game</button></Link>
-							<button className="btn" onClick={this.logout.bind(this)}>Logout</button>
+							<Link to="/mastermind"><button className="customBtn">Home</button></Link>
+							<Link to="/play"><button className="customBtn">Play game</button></Link>
+							<button className="customBtn" onClick={this.logout.bind(this)}>Logout</button>
 						</div>
 					</div>
 

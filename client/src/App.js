@@ -94,7 +94,7 @@ class App extends Component {
             </div>
             <span className="profile">Welcome {this.props.uname}</span>
             <div className="nav">
-              <button className="btn" onClick={this.logout.bind(this)}>Logout</button>
+              <button className="customBtn" onClick={this.logout.bind(this)}>Logout</button>
             </div>
           </div>
 

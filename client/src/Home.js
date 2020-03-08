@@ -104,11 +104,11 @@ class Home extends React.Component
 							<span className="pp">PP</span>
 						</div>
 						<div className="nav">
-							<Link to="/register"><button className="btn">SignUp</button></Link>
-							<Link to="/login"><button className="btn">Login</button></Link>
-							<Link to="/codeforces"><button className="btn">Codeforces</button></Link>
-							{/* <Link to="/spotify"><button className="btn">Spotify</button></Link> */}
-							<Link to="/youtube"><button className="btn">Youtube</button></Link>
+							<Link to="/register"><button className="customBtn">SignUp</button></Link>
+							<Link to="/login"><button className="customBtn">Login</button></Link>
+							<Link to="/codeforces"><button className="customBtn">Codeforces</button></Link>
+							{/* <Link to="/spotify"><button className="customBtn">Spotify</button></Link> */}
+							<Link to="/youtube"><button className="customBtn">Youtube</button></Link>
 						</div>
 					</div>
 					<div className="error">

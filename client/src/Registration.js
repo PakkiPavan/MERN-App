@@ -118,8 +118,8 @@ class Registration extends React.Component
 									<span className="pp">PP</span>
 								</div>
 								<div className="nav">
-									<Link to="/"><button className="btn">Home</button></Link>
-									<Link to="/login"><button className="btn">Login</button></Link>
+									<Link to="/"><button className="customBtn">Home</button></Link>
+									<Link to="/login"><button className="customBtn">Login</button></Link>
 								</div>
 							</div>
 							<div className="box">
@@ -145,7 +145,7 @@ class Registration extends React.Component
 										</div>
 										<div style={{position:'relative'}}>
 											<p id="success">Registration Completed Successfully<br/>Click <Link to="/login" style={{color:'blue'}}>here</Link> to Login</p>
-											<button type="button" className="btn submit" onClick={this.register.bind(this)}>REGISTER</button>
+											<button type="button" className="customBtn submit" onClick={this.register.bind(this)}>REGISTER</button>
 										</div>
 									</form>
 							</div>

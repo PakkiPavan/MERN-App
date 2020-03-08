@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
+// import './App.css';
 import styled,{keyframes} from 'styled-components';
 import {
     Card, CardImg, CardText, CardBody,
@@ -13,7 +14,9 @@ import {
   } from 'reactstrap';
 
 // Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
-let apiKey="<API_KEY>";
+//let apiKey=<API_KEY>;
+// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
+let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
 
 var load=keyframes`
 	0%
@@ -58,7 +61,12 @@ class Youtube extends React.Component
     constructor(props)
     {
         super(props);
-        this.state={count:-1,isHidden:false};
+        this.state={
+            count:-1,
+            isHidden:false,
+            iframeWidth:"853",
+            iframeHeight:"480" 
+        };
     }
     componentDidMount()
     {
@@ -104,7 +112,10 @@ class Youtube extends React.Component
             console.log("VIDEO DETAILS FETCHED");
             console.log(data);
             this.setState({
-                videoId: data.items[0].id.videoId
+                videoId: data.items[0].id.videoId,
+                thumbnail:data.items[0].snippet.thumbnails.medium.url,
+                iframeHeight:String(window.innerHeight-100),
+                iframeWidth:String(window.innerWidth-100)
             },()=>{
                 if(document.getElementById("videoFrame"))
                     document.getElementById("videoFrame").style.display="none";
@@ -125,6 +136,11 @@ class Youtube extends React.Component
             console.log(res)
         })
         .catch(err=>alert("Something went wrong"))
+    };
+    checkTest = (event) =>{
+        console.log("checkTest");
+        event.persist();
+        console.log(event.target.checked)
     }
     render()
     {
@@ -136,13 +152,25 @@ class Youtube extends React.Component
             src="https://www.youtube-nocookie.com/embed/"+this.state.videoId+"?autoplay=1"
         }
         return(
-            <div className="container" id="container">
+            <div className="container" id="container" style={{margin:"0px"}}>
                 <h1>Youtube</h1>
-                <input onChange={this.handleChange} placeholder="Search youtube videos" onKeyPress={this.handleKeyPress}/>
-                <button onClick={this.search}>Get Videos</button>
-                <button onClick={this.hideVideo}>Click here</button>
+                <input onChange={this.handleChange} placeholder="Search Youtube Videos" onKeyPress={this.handleKeyPress} className="searchField"/>
+                <button className="searchBtn"><i className="fa fa-search" onClick={this.search}></i></button>
+                {/* <button onClick={this.search} className="customBtn">Get Videos</button> */}
+                {/* <button onClick={this.hideVideo} className="customBtn">Toggle Video</button> */}
+                <div className="toggleContainer">
+                    <label className="switch">
+                        <input type="checkbox" className="customCheckBox" onChange={this.hideVideo}/>
+                        <span className="slider round"></span>
+                    </label>
+                </div>
+                {src && (
+                    <div className="spinner">
+                        <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
+                    </div>
+                )}
                 {/* <Card>
-                    <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+                    <CardImg top width="100%" src={this.state.thumbnail} alt="Card image cap" />
                     <CardBody>
                     <CardTitle>Card title</CardTitle>
                     <CardSubtitle>Card subtitle</CardSubtitle>
@@ -155,15 +183,16 @@ class Youtube extends React.Component
                     <div>
                         <iframe
                             id="videoFrame" 
-                            width="853" 
-                            height="480" 
+                            // width="853" 
+                            // height="480" 
+                            width={this.state.iframeWidth} 
+                            height={this.state.iframeHeight}
                             src={src}
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen
                             >
                         </iframe>
-                        <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
                     </div>
                 )}
             </div>

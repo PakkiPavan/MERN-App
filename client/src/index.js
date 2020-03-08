@@ -19,7 +19,7 @@ import {HashRouter,Route,Switch} from 'react-router-dom';
 import Rules from './Rules';
 //import createHistory from 'history/createBrowserHistory'
 import Codeforces from './Codeforces';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const store=createStore(MMReducer);
 

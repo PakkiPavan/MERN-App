@@ -167,8 +167,8 @@ class Login extends React.Component
               <span className="pp">PP</span>
             </div>
             <div className="nav">
-              <Link to="/"><button className="btn">Home</button></Link>
-              <Link to="/register"><button className="btn">SignUp</button></Link>
+              <Link to="/"><button className="customBtn">Home</button></Link>
+              <Link to="/register"><button className="customBtn">SignUp</button></Link>
             </div>
           </div>
               <div className="box login" id="loginBox">
@@ -184,7 +184,7 @@ class Login extends React.Component
                     </div>
                     <div style={{position:'relative'}}>
                       <p id="fail">Invalid Credentials</p>
-                      <button type="button" className="btn submit" onClick={this.login.bind(this)}>LOGIN</button>
+                      <button type="button" className="customBtn submit" onClick={this.login.bind(this)}>LOGIN</button>
                     </div>
                   </form>
               </div>
