@@ -8,13 +8,15 @@ import {connect} from 'react-redux';
 import {store} from './index';
 // import './App.css';
 import styled,{keyframes} from 'styled-components';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-  } from 'reactstrap';
+// import {
+//     Card, CardImg, CardText, CardBody,
+//     CardTitle, CardSubtitle, Button
+//   } from 'reactstrap';
 
 // Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
-let apiKey="<API_KEY>";
+//let apiKey="<API_KEY>";
+// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
+let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
 
 var load=keyframes`
 	0%
@@ -112,6 +114,8 @@ class Youtube extends React.Component
             this.setState({
                 videoId: data.items[0].id.videoId,
                 thumbnail:data.items[0].snippet.thumbnails.medium.url,
+                title:data.items[0].snippet.title,
+                channelTitle:data.items[0].snippet.channelTitle,
                 iframeHeight:String(window.innerHeight-100),
                 iframeWidth:String(window.innerWidth-100)
             },()=>{
@@ -167,15 +171,16 @@ class Youtube extends React.Component
                         <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
                     </div>
                 )}
-                {/* <Card>
-                    <CardImg top width="100%" src={this.state.thumbnail} alt="Card image cap" />
-                    <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
-                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                    <Button>Button</Button>
-                    </CardBody>
-                </Card> */}
+                {(src && this.state.isHidden) && (
+                    <div className="cardsContainer">
+                        <img src={this.state.thumbnail} style={{width:"168px",float:"left",borderTopLeftRadius:"10px",borderBottomLeftRadius:"10px"}} alt="thumbnail"/>   
+                        {/* <img src="https://i.ytimg.com/vi/sBws8MSXN7A/mqdefault.jpg" style={{width:"168px",float:"left"}} alt="thumbnail"/>    */}
+                        <div className="customCard">
+                            <span className="videoTitle">{this.state.title}</span>
+                            <span className="videoDescription">{this.state.channelTitle}</span>
+                        </div>
+                    </div>                    
+                )}
                 {/* <button onClick={this.test}>HTTP Test</button> */}
                 {src && (
                     <div>
@@ -189,7 +194,7 @@ class Youtube extends React.Component
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen
-                            >
+                        >
                         </iframe>
                     </div>
                 )}
