@@ -13,10 +13,6 @@ import styled,{keyframes} from 'styled-components';
 //     CardTitle, CardSubtitle, Button
 //   } from 'reactstrap';
 
-// Make sure while pushing to GitHub remove the API_KEY, only while pushing to Heroku mention the API_KEY
-//let apiKey="<API_KEY>";
-// Old API Key = AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90
-// let apiKey="AIzaSyA6toMAaaVBe0jq4u2vOMkuMiq_pBidKpc";
 let apiKey="";
 
 var load=keyframes`
