@@ -68,7 +68,7 @@ class Home extends React.Component
 //for sesion
 		axios.get('/session')
 		.then(res=>{
-				console.log(res.data);
+				// console.log(res.data);
 				if(res.data!=="")
 				{
 					//this.setState({count:0})

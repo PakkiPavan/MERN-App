@@ -65,7 +65,7 @@ class Codeforces extends React.Component
                     handles+=user.party.members[0].handle+";"
                 })
                 let standings=self.fetchData(handles);
-                console.log(standings)
+                // console.log(standings)
                 self.setState({
                     users:standings,
                     contest:data.result.contest.name
@@ -90,23 +90,23 @@ class Codeforces extends React.Component
         return users;
     }
     getStandings=()=>{
-        console.log(this.state.contestId)
+        // console.log(this.state.contestId)
         let self=this;
         $.ajax({
             url:"https://codeforces.com/api/contest.standings?contestId=1288&from=1&count=10",
             type:"GET",
             success:function(data){
-                console.log("SUCCESS");
-                console.log(data);
+                // console.log("SUCCESS");
+                // console.log(data);
                 let users=JSON.stringify(data);
-                console.log(JSON.stringify(data.result.rows))
+                // console.log(JSON.stringify(data.result.rows))
                 let rows=data.result.rows;
                 let handles="";
                 rows.map((user)=>{
                     handles+=user.party.members[0].handle+";"
                 })
                 let standings=self.fetchData(handles);
-                console.log(standings)
+                // console.log(standings)
                 self.setState({
                     users:standings,
                     contestName:data.result.contest.name,

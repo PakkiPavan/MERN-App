@@ -58,16 +58,16 @@ class Login extends React.Component
     document.body.scrollTop=0;
     document.documentElement.scrollTop=0;
 
-    console.log(this.props.history);
-    console.log("Current uname in LOGIN is ",store.getState().uname);
+    // console.log(this.props.history);
+    // console.log("Current uname in LOGIN is ",store.getState().uname);
     // store.subscribe(()=>{
     // 	console.log("Current state in LOGIN is",store.getState().color)
     // })
     this.setState({count:-1})
-    console.log("Login");
+    // console.log("Login");
     axios.get('/session')
     .then(res=>{
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data!=="")
         {
           //this.setState({pass:true,uname:res.data})
@@ -84,7 +84,7 @@ class Login extends React.Component
   }
   login()
   {
-    console.log("Logging in");
+    // console.log("Logging in");
     var uname=document.getElementById('uname').value;
     var password=document.getElementById('password').value;
     if(uname===""||password==="")
@@ -93,7 +93,7 @@ class Login extends React.Component
     {
       axios.post('/serverLogin',{uname:uname,password:password})
       .then(res=>{
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.length>0)
         {
           //this.setState({pass:!this.state.pass,uname:res.data[0].uname})

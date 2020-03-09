@@ -88,8 +88,8 @@ class Rules extends React.Component
 		this.setState({count:-1})
 		axios.get('/session')
     .then(res=>{
-				console.log("axios session");
-        console.log(res);
+				// console.log("axios session");
+        // console.log(res);
         if(res.data!=="")
         {
 					this.setState({count:0})
@@ -113,7 +113,7 @@ class Rules extends React.Component
 		this.props.logoutCheck();
     axios.get('/serverLogout')
     .then(res=>{
-        console.log(res);
+        // console.log(res);
         if(res.data==="pass")
         {
           this.props.setUname("");

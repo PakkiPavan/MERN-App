@@ -22,7 +22,7 @@ class App extends Component {
 				.then(result=>console.log(result))*/
 		axios.get('/api')
 		.then(res=>res.data)
-		.then(countJson=>this.setState({count:countJson[0].count},()=>console.log("Count fetched",countJson[0])))
+		.then(countJson=>this.setState({count:countJson[0].count}))
 		.catch(err=>console.log(err))
 		//Without Redux
 		/*
@@ -44,13 +44,13 @@ class App extends Component {
 	}
 	test()
 	{
-		console.log("Inside test");
-		console.log(document.getElementById("like").childNodes[1]);
+		// console.log("Inside test");
+		// console.log(document.getElementById("like").childNodes[1]);
 		document.getElementById("like").childNodes[2].style.pointerEvents="none";
 		document.getElementById("like").childNodes[2].style.color="green";
 
 		this.setState({count:this.state.count+1},()=>console.log("With callback ",this.state.count))
-		console.log("Without callback ",this.state.count)
+		// console.log("Without callback ",this.state.count)
 		$.ajax({
 			url:'/inc',
 			type:'post',
@@ -59,8 +59,8 @@ class App extends Component {
 			},
 			success:function(r)
 			{
-				console.log("Success")
-				console.log(r)
+				// console.log("Success")
+				// console.log(r)
 			},
 			error:function()
 			{
@@ -77,7 +77,7 @@ class App extends Component {
   {
     axios.get('/logout')
     .then(res=>{
-        console.log(res);
+        // console.log(res);
         if(res.data==="pass")
           this.setState({logout:!this.state.logout})
     })

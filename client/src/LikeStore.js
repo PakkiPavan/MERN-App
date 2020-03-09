@@ -1,6 +1,6 @@
 export function mapStateToProps(state)
 {
-	console.log(state)
+	// console.log(state)
 	return{
 		count:state.count
 	}

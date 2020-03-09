@@ -17,10 +17,9 @@ class Dashboard extends React.Component
   }
   componentDidMount()
   {
-    console.log("Dashboard");
+    // console.log("Dashboard");
     //console.log(this.props.logout);
-    console.log(this.props.uname);
-
+    // console.log(this.props.uname);
   }
   logout()
   {

@@ -54,7 +54,7 @@ ReactDOM.render(
 
 
 store.subscribe(()=>{
-	console.log("Current state is",store.getState())
+	// console.log("Current state is",store.getState())
 })
 
 /*

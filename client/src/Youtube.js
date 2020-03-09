@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
+import dotenv from "dotenv";
 // import './App.css';
 import styled,{keyframes} from 'styled-components';
 // import {
@@ -67,14 +68,16 @@ class Youtube extends React.Component
     }
     componentDidMount()
     {
-        fetch("/apiKeys.json")
-        .then(res=>res.json())
-        .then(data=>{
-            apiKey=data.youtubeApiKey;
-        })
-        .catch(err=>{
-            alert("ERROR WHILE FETCHING YOUTUBE API KEY")
-        })
+        // dotenv.config();
+        // fetch("/apiKeys.json")
+        // .then(res=>res.json())
+        // .then(data=>{
+        //     apiKey=data.youtubeApiKey;
+        // })
+        // .catch(err=>{
+        //     alert("ERROR WHILE FETCHING YOUTUBE API KEY")
+        // })
+        apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
         // // let URL="https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90&part=snippet&q=samajavaragamana video song"
         // let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=samajavaragamana video song&maxResults=10`;
         // fetch(URL)
@@ -114,8 +117,8 @@ class Youtube extends React.Component
         fetch(URL)
         .then(response => response.json())
         .then(data => {
-            console.log("VIDEO DETAILS FETCHED");
-            console.log(data);
+            // console.log("VIDEO DETAILS FETCHED");
+            // console.log(data);
             this.setState({
                 items:data.items,
                 videoId: data.items[0].id.videoId,
@@ -152,9 +155,9 @@ class Youtube extends React.Component
     };
     loadVideo = (event) =>{
         event.persist();
-        console.log("loadVideo");
-        console.log(event.target.id);
-        console.log(event)
+        // console.log("loadVideo");
+        // console.log(event.target.id);
+        // console.log(event)
     }
     render()
     {

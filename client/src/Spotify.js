@@ -60,7 +60,7 @@ class Spotify extends React.Component
   {
     let parsed = queryString.parse(window.location.search);
     // let accessToken = parsed.access_token;
-    console.log("ACCESS TOKEN",accessToken)
+    // console.log("ACCESS TOKEN",accessToken)
     if (!accessToken)
       return;
     /* To fetch user details*/
@@ -69,8 +69,8 @@ class Spotify extends React.Component
     })
     .then(response => response.json())
     .then(data => {
-      console.log("USER DETAILS FETCHED");
-      console.log(data);
+      // console.log("USER DETAILS FETCHED");
+      // console.log(data);
       // this.setState({
       //   user: {
       //     name: data.display_name
@@ -126,7 +126,7 @@ class Spotify extends React.Component
     }
   } 
   search = () =>{
-    console.log("SEARCH",this.state.query);
+    // console.log("SEARCH",this.state.query);
     // let accessToken="BQAr5bk7HSlCg_oQFjy1dYnS1XXmmANNUX0g1OQXEb-pst0PFhWkquuJsiPNgIQMl90SbV5hAz3SV0HLW6BYkwdeLGsF7FiPJ_1g6DmnLSJDT8uU2NCqEFxT8hG10tY3Ok3eGAhvR--cS6F2sVVSpLeMouwa92732g";
     let auth_token = "Bearer "+accessToken;
     let BASE_URL = "https://api.spotify.com/v1/search?";
@@ -146,12 +146,12 @@ class Spotify extends React.Component
     }).
     then(response => response.json())
     .then(data=>{
-      console.log("ARTISTS FETCHED")
-      console.log(data);
+      // console.log("ARTISTS FETCHED")
+      // console.log(data);
       /* let items=data.playlists.items;
       let item=data.playlists.items[0];
-      console.log("ITEMS")
-      console.log(item);
+      // console.log("ITEMS")
+      // console.log(item);
       let id=item.id; */
       // samajavaragamana
       // ala vaikuntapuramlo
@@ -171,8 +171,8 @@ class Spotify extends React.Component
       })
       .then((res)=>res.json())
       .then(data=>{
-        console.log("DATA USING ID");
-        console.log(data)
+        // console.log("DATA USING ID");
+        // console.log(data)
       }) */
     })
     .catch(err=>{
@@ -191,17 +191,17 @@ class Spotify extends React.Component
     // })
   };
   playAudio=()=>{
-    console.log("PLAY AUDIO");
-    console.log(this.state.tracks);
+    // console.log("PLAY AUDIO");
+    // console.log(this.state.tracks);
     
     if(this.state.tracks)
     {
       let audioUrl = this.state.tracks[0].preview_url;
-      console.log("AUDIO URL");
-      console.log(audioUrl)
+      // console.log("AUDIO URL");
+      // console.log(audioUrl)
       let audio=new Audio(audioUrl);
-      console.log("AUDIO");
-      console.log(audio);
+      // console.log("AUDIO");
+      // console.log(audio);
       audio.play();
       this.setState({
         audio
@@ -212,7 +212,7 @@ class Spotify extends React.Component
     }
   };
   pauseAudio = () =>{
-    console.log("PAUSE AUDIO");
+    // console.log("PAUSE AUDIO");
     if(this.state.audio)
     {
       this.state.audio.pause();
@@ -227,7 +227,7 @@ class Spotify extends React.Component
 		$('.nav').toggle(400);
 	}
   loginSpotify=()=>{
-    console.log("loginSpotify");
+    // console.log("loginSpotify");
     window.location = "http://localhost:3001/spotifyLogin";
   }
   render()

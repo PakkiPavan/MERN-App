@@ -36,7 +36,7 @@ class Registration extends React.Component
 	}
 	register(e)
 	{
-		console.log('registering')
+		// console.log('registering')
 		var mail=/^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(\.\w{2,3})+$/;
 		var uname=document.getElementById('uname').value;
 		var email=document.getElementById('email').value;
@@ -63,7 +63,7 @@ class Registration extends React.Component
 					$('#format').hide();
 					axios.post('/serverRegister',{uname:uname,email:email,password:password})
 					.then(res=>{
-						console.log(res);
+						// console.log(res);
 						$('#form').get(0).reset();
 						$('#success').show();
 					})
