@@ -77,6 +77,8 @@ class Youtube extends React.Component
         // .catch(err=>{
         //     alert("ERROR WHILE FETCHING YOUTUBE API KEY")
         // })
+        console.log("process.env");
+        console.log(process.env);
         apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
         // // let URL="https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90&part=snippet&q=samajavaragamana video song"
         // let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=samajavaragamana video song&maxResults=10`;
