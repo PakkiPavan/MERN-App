@@ -63,7 +63,8 @@ class Youtube extends React.Component
             count:-1,
             isHidden:false,
             iframeWidth:"853",
-            iframeHeight:"480" 
+            iframeHeight:"480",
+            srcUrl:null,
         };
     }
     componentDidMount()
@@ -113,7 +114,7 @@ class Youtube extends React.Component
     }
     search = () =>{
         // let URL="https://www.googleapis.com/youtube/v3/search?key=AIzaSyBMQ0sWfQQcroPaK0FpJeMq5HBu7NpSj90&part=snippet&q=samajavaragamana video song"
-        let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${this.state.query}&maxResults=10`;
+        let URL=`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${this.state.query}&maxResults=50`;
         fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -121,10 +122,11 @@ class Youtube extends React.Component
             // console.log(data);
             this.setState({
                 items:data.items,
-                videoId: data.items[0].id.videoId,
-                thumbnail:data.items[0].snippet.thumbnails.medium.url,
-                title:data.items[0].snippet.title,
-                channelTitle:data.items[0].snippet.channelTitle,
+                srcUrl:"https://www.youtube-nocookie.com/embed/"+data.items[0].id.videoId+"?autoplay=1",
+                // videoId: data.items[0].id.videoId,
+                // thumbnail:data.items[0].snippet.thumbnails.medium.url,
+                // title:data.items[0].snippet.title,
+                // channelTitle:data.items[0].snippet.channelTitle,
                 iframeHeight:String(window.innerHeight-100),
                 iframeWidth:String(window.innerWidth-500)
             },()=>{
@@ -155,9 +157,9 @@ class Youtube extends React.Component
     };
     loadVideo = (event) =>{
         event.persist();
-        // console.log("loadVideo");
-        // console.log(event.target.id);
-        // console.log(event)
+        this.setState({
+            srcUrl:"https://www.youtube-nocookie.com/embed/"+event.target.id+"?autoplay=1"
+        });
     }
     render()
     {
@@ -172,16 +174,21 @@ class Youtube extends React.Component
         let cards=[];
         if(items)
         {
-            items.map((ele)=>{
-                cards.push(
-                    <div key={ele.id.videoId} id={ele.id.videoId} className="cardsContainer" onClick={this.loadVideo}>
-                        <img src={ele.snippet.thumbnails.medium.url} alt="thumbnail"/>
-                        <div className="customCard">
-                            <span className="videoTitle">{ele.snippet.title}</span>
-                            <span className="channelTitle">{ele.snippet.channelTitle}</span>
-                        </div>
-                    </div>
-                )
+            items.map((ele,index)=>{
+                if(ele.id && ele.id.videoId && ele.id.videoId!=="")
+                {
+                    cards.push(
+                        <li key={ele.id.videoId} id={ele.id.videoId} className="cardsContainer" onClick={this.loadVideo}>
+                            <div id={ele.id.videoId}>
+                                <img id={ele.id.videoId} src={ele.snippet.thumbnails.medium.url} alt="thumbnail"/>
+                                <div className="customCard" id={ele.id.videoId} className={ele.id.videoId}>
+                                    <div className="videoTitle" id={ele.id.videoId}>{ele.snippet.title}</div>
+                                    <div className="channelTitle" id={ele.id.videoId}>{ele.snippet.channelTitle}</div>
+                                </div>
+                            </div>
+                        </li>
+                    )
+                }
             })
         }
         return(
@@ -197,11 +204,11 @@ class Youtube extends React.Component
                         <span className="slider round"></span>
                     </label>
                 </div>
-                {src && (
+                {/* {this.state.srcUrl && (
                     <div className="spinner">
                         <i className="fa fa-spinner fa-spin" style={{fontSize:"40px"}}></i>
                     </div>
-                )}
+                )} */}
                 {/* {(src && this.state.isHidden) && (
                     <div className="cardsContainer">
                         <img src={this.state.thumbnail} style={{width:"168px",float:"left",borderTopLeftRadius:"10px",borderBottomLeftRadius:"10px"}} alt="thumbnail"/>   
@@ -213,7 +220,7 @@ class Youtube extends React.Component
                     </div>
                 )} */}
                 {/* <button onClick={this.test}>HTTP Test</button> */}
-                {src && (
+                {this.state.srcUrl && (
                     <div>
                         <iframe
                             id="videoFrame" 
@@ -221,7 +228,7 @@ class Youtube extends React.Component
                             // height="480" 
                             width={this.state.iframeWidth} 
                             height={this.state.iframeHeight}
-                            src={src}
+                            src={this.state.srcUrl}
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen
@@ -231,7 +238,7 @@ class Youtube extends React.Component
                 )}
                 {(this.state.items && this.state.isHidden) && (
                     <div className="customCards">
-                        {cards}
+                        <ul>{cards}</ul>
                     </div>
                 )}
             </div>

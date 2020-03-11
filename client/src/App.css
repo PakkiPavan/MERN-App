@@ -480,8 +480,8 @@ p{
 .cardsContainer{
 	border: 1px solid grey;
 	background: white;
-	height: 95px;
-	width:400px;
+	padding:47px;
+	width:300px;
 	position: relative;
 	border-radius:10px;
 	margin: 10px;
@@ -491,6 +491,9 @@ p{
 .cardsContainer img{
 	width:168px;
 	float:left;
+	position: absolute;
+	top:0px;
+	left:0px;
 	border-top-left-radius:10px;
 	border-bottom-left-radius:10px;
 }
@@ -499,16 +502,20 @@ p{
 	right:10px;
 }
 .videoTitle{
+	font-family: Roboto, Arial, sans-serif;
 	width: 200px;
 	position: absolute;
-	right:-3px;
-	font-weight: bolder;
+	right:20px;
+	top:5px;
+	font-weight: bold;
 	font-size:12px;
 }
 .channelTitle{
+	font-family: Roboto, Arial, sans-serif;
 	position: absolute;
-	top: 70px;
-	left: 200px;
+	left: 175px;
+	bottom:5px;
+	text-align:center;
 	/* font-weight: bolder; */
 	font-size:16px;
 }
@@ -520,20 +527,24 @@ p{
 }
 @media(max-width:500px){
 	.cardsContainer{
-		height:220px;
-		width:350px;
+		padding:130px;
+		width:20px;
 	}
 	.cardsContainer img{
-		height: 150px;
-		width:350px;
+		height: 145px;
+		width:280px;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
 	}
 	.videoTitle{
-		bottom:45px;
-		left:15px;
+		top:initial;
+		bottom:68px;
+		left:5px;
 		width: fit-content;
 	}
 	.channelTitle{
-		top: 185px;
+		top: initial;
+		bottom:20px;
 		left:15px;
 	}
 }
