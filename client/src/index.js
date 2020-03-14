@@ -14,6 +14,7 @@ import MMReducer from './MMReducer';
 import NotFound from './NotFound';
 import Spotify from './Spotify';
 import Youtube from './Youtube';
+import YoutubeTest from './YoutubeTest';
 import {HashRouter,Route,Switch} from 'react-router-dom';
 //import {BrowserRouter,HashRouter,Route,Switch} from 'react-router-dom';
 import Rules from './Rules';
@@ -45,6 +46,7 @@ ReactDOM.render(
 					<Route path="/play" component={MMPlay}/>
 					<Route path="/spotify" component={Spotify}/>
 					<Route path="/youtube" component={Youtube}/>
+					<Route path="/youtubeTest" component={YoutubeTest}/>
 					<Route path="/*" component={NotFound}/>
 				</Switch>
 			</Provider>

@@ -109,6 +109,7 @@ class Home extends React.Component
 							<Link to="/codeforces"><button className="customBtn">Codeforces</button></Link>
 							{/* <Link to="/spotify"><button className="customBtn">Spotify</button></Link> */}
 							<Link to="/youtube"><button className="customBtn">Youtube</button></Link>
+							<Link to="/youtubeTest"><button className="customBtn">Responsive</button></Link>
 						</div>
 					</div>
 					<div className="error">
