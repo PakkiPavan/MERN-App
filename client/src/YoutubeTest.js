@@ -7,6 +7,7 @@ import {mapStateToProps,mapDispatchToProps} from './MMStore';
 import {connect} from 'react-redux';
 import {store} from './index';
 import dotenv from "dotenv";
+import moment from "moment";
 // import './App.css';
 import styled,{keyframes} from 'styled-components';
 // import {
@@ -120,10 +121,20 @@ class YoutubeTest extends React.Component
         fetch(URL)
         .then((res)=>res.json())
         .then((data)=>{
-            // console.log("PART DATA")
-            // console.log(data);
+            console.log("PART DATA")
+            console.log(data);
+            let publishedAt=new Date(data.items[0].snippet.publishedAt);
+            // moment("14/11/2015","DD/MM/YYYY").format("MMM DD YYYY")
+            let date=publishedAt.getDate()+"/"+publishedAt.getMonth()+"/"+publishedAt.getFullYear();
+            let finalDate=moment(date,"DD/MM/YYYY").format("MMM DD YYYY")
             this.setState({
-                viewCount:data.items[0].statistics.viewCount
+                videoTitle:data.items[0].snippet.title,
+                channelTitle:data.items[0].snippet.channelTitle,
+                videoDescription:data.items[0].snippet.description.substring(0,100),
+                viewCount:data.items[0].statistics.viewCount,
+                likeCount:data.items[0].statistics.likeCount,
+                dislikeCount:data.items[0].statistics.dislikeCount,
+                publishedOn:String(publishedAt).substr(4,11)
             });
         })
         .catch(err=>{
@@ -149,14 +160,14 @@ class YoutubeTest extends React.Component
         .then(data => {
             // console.log("SEARCH DATA");
             // console.log(data)
-            for(let i=0;i<data.items.length;i++)
-            {
-                if(data.items[i].id.videoId)
-                {
-                    this.getVideoDetailsById(data.items[i].id.videoId);
-                    break;
-                }
-            }
+            // for(let i=0;i<data.items.length;i++)
+            // {
+            //     if(data.items[i].id.videoId)
+            //     {
+            //         this.getVideoDetailsById(data.items[i].id.videoId);
+            //         break;
+            //     }
+            // }
             this.setState({
                 items:data.items,
                 // srcUrl:"https://www.youtube-nocookie.com/embed/"+data.items[0].id.videoId+"?autoplay=1",
@@ -176,8 +187,9 @@ class YoutubeTest extends React.Component
     };
     loadVideo = (event) =>{
         event.persist();
+        this.getVideoDetailsById(event.target.id);
         document.getElementById("spinner").style.display="block";
-        document.getElementsByTagName("main")[0].style.padding="370px 18px 10px";
+        document.getElementsByTagName("main")[0].style.padding="500px 18px 10px";//"370px 18px 10px";
         setTimeout(() => {
             this.setState({
                 srcUrl:"https://www.youtube-nocookie.com/embed/"+event.target.id+"?autoplay=1"
@@ -232,7 +244,7 @@ class YoutubeTest extends React.Component
 
             <header>
                 {/* <img src='./youtubeLogo.jpg' alt="" class="logo"/> */}
-                <input placeholder="Search" style={{padding:"6px",width:"350px"}} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+                <input placeholder="Search" className="searchInput" onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
                 <button className="searchBtn1"><i className="fa fa-search searchIcon1" onClick={this.search}></i></button>
                 <div className="toggleContainer">
                     <label className="switch">
@@ -250,6 +262,14 @@ class YoutubeTest extends React.Component
                     allow="autoplay; encrypted-media" 
                     allowFullScreen>
                 </iframe>
+                <div id="videoDetails">
+                    <h4 className="videoTitle1">{this.state.videoTitle}</h4>
+                    <p className="viewCount">{this.state.viewCount}&nbsp;views&nbsp;.&nbsp;{this.state.publishedOn}</p>
+                    <div id="likes">
+                        <i className="fa fa-thumbs-up" style={{marginRight:"20px",fontSize:"20px"}}>{this.state.likeCount}</i>
+                        <i className="fa fa-thumbs-down" style={{marginRight:"20px",fontSize:"20px"}}>{this.state.dislikeCount}</i>
+                    </div>
+                </div>
             </section>)}
             <div id="spinner" style={{display:"none"}}>
                 <i className="fa fa-spinner fa-spin" style={{fontSize:"35px"}}></i>
