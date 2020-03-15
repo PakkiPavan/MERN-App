@@ -112,7 +112,7 @@ class Registration extends React.Component
 			})
 		})
 			return(
-				<div className="container">
+				<div className="container1">
 							<div className="mainHeader">
 								<div className="pavanLogo" onClick={this.nav.bind(this)}>
 									<span className="pp">PP</span>

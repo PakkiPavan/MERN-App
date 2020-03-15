@@ -160,7 +160,7 @@ class Login extends React.Component
     {
       //console.log("logout after logout "+this.props.logout);
       return(
-        <div className="container" id="container">
+        <div className="container1" id="container">
           <h1 id="#top">Hello</h1>
           <div className="mainHeader">
             <div className="pavanLogo" onClick={this.nav.bind(this)}>
